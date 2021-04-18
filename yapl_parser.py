@@ -93,10 +93,39 @@ def p_for_stmt(p):
     stmt : FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk
     """
     p[0] = ("FOR", p[3], p[4], p[6], p[8])
-        
+
+def p_struct(p):
+    """
+    stmt : STRUCT VAR_NAME dec_blk
+    """
+    p[0] = ("STRUCT", p[2], p[3])
+
 def p_dec_stmt(p):
     """
-    stmt : DATA_TYPE VAR_NAME SEMICOL
+    stmt : declare
+        | dec_blk
+    """
+    p[0] = p[1]
+
+def p_dec_blk(p):
+    """
+    dec_blk : L_CURLY declare R_CURLY
+    """
+    p[0] = p[2]
+    
+
+def p_declare(p):
+    """
+    declare : dec declare
+        |
+    """
+    p[0] = ("END") # mark end of chain
+    if len(p) > 2:
+        p[0] = ("DEC_CHAIN", p[1], p[2])
+
+def p_dec(p):
+    """
+    dec : DATA_TYPE VAR_NAME SEMICOL
         | DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL
     """
     if(len(p) == 4):

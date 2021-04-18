@@ -31,6 +31,16 @@ def var_create(var_name, var_type) -> bool:
     var_dict[var_name] = new_var
     return True
 
+# check if var_name exists and return value
+def var_access(var_name):
+    var_stacc = FUNC_STACC[-1]
+    curr_scope = var_exists(var_name)
+    if curr_scope < 0:
+        raise LookupError("LookupError: variable name " + var_name + " not found. Did you declare it?")
+        return None
+    var_dict = var_stacc[curr_scope]
+    return var_dict[var_name]
+
 # updates variable if variable exists otherwise returns false
 # variables are stored as tuples (type, value) in latest scope dictionary
 def var_update(var_name, var_val) -> bool:
@@ -52,16 +62,6 @@ def var_update(var_name, var_val) -> bool:
     
     var_dict[var_name] = (required_type, var_val)
     return True
-
-# check if var_name exists and return value
-def var_access(var_name):
-    var_stacc = FUNC_STACC[-1]
-    curr_scope = var_exists(var_name)
-    if curr_scope < 0:
-        raise LookupError("LookupError: variable name " + var_name + " not found. Did you declare it?")
-        return None
-    var_dict = var_stacc[curr_scope]
-    return var_dict[var_name]
 
 # change nested lists to 1D
 def flatten(ls):
@@ -175,6 +175,9 @@ def stmt_eval(p): # p is the parsed statement subtree / program
     elif stype == "DEC_ASS":
         stmt_eval(p[1])
         stmt_eval(p[2])
+    elif stype == "DEC_CHAIN":
+        for stmt in p[1:]:
+            stmt_eval(stmt)
     elif stype == "EXP":
         exp_eval(p[1])
     elif stype == "IF":
@@ -198,11 +201,16 @@ def stmt_eval(p): # p is the parsed statement subtree / program
         cond = p[2]
         inc = p[3]
         blk = p[4]
+        # add new scope dict in curr function's stack
+        var_stacc = FUNC_STACC[-1]
+        var_stacc.append({})
         stmt_eval(start)
         while bool(exp_eval(cond)[1]):
             stmt_eval(blk)
             stmt_eval(inc)
-
+        # remove added scope
+        var_stacc.pop()
+        
 def run_program(p): # p[0] == 'Program': a bunch of statements
     for stmt in p: # statements in proglist
         if stmt != None:
