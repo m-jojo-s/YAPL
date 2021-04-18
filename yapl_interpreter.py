@@ -1,5 +1,6 @@
 from yapl_lexer import *
 from yapl_parser import *
+from copy import deepcopy
 import sys
 
 FUNC_STACC = [[{}]]
@@ -9,16 +10,21 @@ def init_stacc():
     # variables and scope management
     FUNC_STACC = [[{}]] # 0 index handles global scope. new var_stacc added for each new function
 
-# Returns scope index if variable exists, -1 otherwise
+# Returns scope index if variable exists, -1 if it is global -2 otherwise
 def var_exists(var_name) -> int:
     var_stacc = FUNC_STACC[-1]
     curr_scope = len(var_stacc) - 1
     while curr_scope >= 0:
         var_dict = var_stacc[curr_scope]
-        if var_name in var_dict:
+        if var_name in var_dict :
             return curr_scope
         curr_scope -= 1
-    return -1
+    # check global scope
+    var_stacc = FUNC_STACC[0]
+    curr_scope = 0
+    if var_name in var_stacc[curr_scope]:
+        return -1
+    return -2
 
 def var_create(var_name, var_type) -> bool:
     var_stacc = FUNC_STACC[-1]
@@ -26,7 +32,7 @@ def var_create(var_name, var_type) -> bool:
     if curr_scope >= len(var_stacc) - 1:
         raise ValueError("ValueError: " + var_name + " already exists")
         return False
-    new_var = (var_type, None)
+    new_var = [var_type, None]
     var_dict = var_stacc[-1]
     var_dict[var_name] = new_var
     return True
@@ -35,32 +41,59 @@ def var_create(var_name, var_type) -> bool:
 def var_access(var_name):
     var_stacc = FUNC_STACC[-1]
     curr_scope = var_exists(var_name)
-    if curr_scope < 0:
-        raise LookupError("LookupError: variable name " + var_name + " not found. Did you declare it?")
-        return None
+    if curr_scope < -1:
+            raise LookupError("LookupError: variable name " + str(var_name) + " not found. Did you declare it?")
+            return None
+    # If variable exists in global space
+    if curr_scope == -1:
+        var_stacc = FUNC_STACC[0]
+        curr_scope = 0
     var_dict = var_stacc[curr_scope]
     return var_dict[var_name]
 
 # updates variable if variable exists otherwise returns false
 # variables are stored as tuples (type, value) in latest scope dictionary
 def var_update(var_name, var_val) -> bool:
-    curr_scope = var_exists(var_name)
-    if curr_scope < 0:
-        return False
-    var_stacc = FUNC_STACC[-1]
-    var_dict = var_stacc[curr_scope]
+    var_dict = {}
+    if type(var_name) != type(str("temp_string")):
+    # To update dictionary (struct)
+        ignore = ["ACCESS", "(", ")", "'", '"', ",", "."]
+        for word in ignore:
+            var_name = str(var_name).replace(word, " ")
+        temp = var_name.split(" ")
+        properties = [word for word in temp if word != ""]
+        var_name = properties[-1]
+        var_dict = var_access(properties[0])[1]
+        for prpty in properties[1:-1]:
+            var_dict = var_dict[prpty]
+    else:
+        curr_scope = var_exists(var_name)
+        if curr_scope < 0:
+            return False
+        var_stacc = FUNC_STACC[-1]
+        var_dict = var_stacc[curr_scope]
     
     # cast value to required type (float to int etc)
     required_type = var_dict[var_name][0]
+    type_groups = {
+        str(type(1.2)) : "NUM",
+        str(type(1)) : "NUM",
+        str(type(True)) : "NUM",
+        str(type("str")) : "STR",
+    }
+    num_only = ["int", "float", "bool"]
+    if required_type in num_only and type_groups[str(type(var_val))] != "NUM":
+        raise TypeError("TypeError: Unable to cast " + str(type(var_val)) + " to " + required_type)
+        return False
     if required_type == "int": var_val = int(var_val)
     elif required_type == "float": var_val = float(var_val)
+    elif required_type == "bool": var_val = bool(var_val != 0)
     elif required_type == "string": var_val = str(var_val)
     elif required_type == "char":
         var_val = str(var_val)
         var_val = var_val[0]
-    elif required_type == "bool": var_val = bool(var_val != 0)
     
-    var_dict[var_name] = (required_type, var_val)
+    var_dict[var_name] = [required_type, var_val]
     return True
 
 # change nested lists to 1D
@@ -149,6 +182,17 @@ def exp_eval(p): # evaluate expression
         return result
     elif operator == "ACCESS":
         return var_access(p[1])
+    elif operator == ".":
+        var = exp_eval(p[1])
+        prpty = p[2]
+        if var[0] in type_groups: # if in pre-defined types group, it is not a struct
+            raise TypeError("TypeError: Invalid operand type(s) for operator " + operator + ": " + var[0])
+            return None
+        instance = var[1]
+        result = instance.get(str(prpty))
+        if result == None:
+            raise LookupError("LookupError: Could not access property " + prpty + " of struct type " + str(var[0]))
+        return result
     else: # operator was a single value
         return p
 
@@ -157,7 +201,7 @@ def stmt_eval(p): # p is the parsed statement subtree / program
     if stype == 'PRINT':
         args = p[1]
         result = exp_eval(args)
-        if type(result) != type(["temp_list"]):
+        if type(result) != type(["temp_list"]) or len(result) == 2:
             print(result[1])
             return
         to_print = ""
@@ -210,6 +254,33 @@ def stmt_eval(p): # p is the parsed statement subtree / program
             stmt_eval(inc)
         # remove added scope
         var_stacc.pop()
+    elif stype == "STRUCT":
+        var_name = p[1]
+        dec_chain = p[2]
+        # temporarily add a new dict in scope so all dec-stmts go there
+        var_stacc = FUNC_STACC[-1]
+        var_stacc.append({})
+        # evaluate dec-chain and pop dict to make struct
+        stmt_eval(dec_chain)
+        data_struct = var_stacc.pop()
+        struct_var = ["struct", data_struct]
+        # add to global scope
+        FUNC_STACC[0][0][var_name] = struct_var
+    elif stype == "DEC_STRUCT":
+        struct_name = p[1]
+        instance_name = p[2]
+        struct_type = var_access(struct_name) # Should raise lookup error if not existent
+        if struct_type == None:
+            return
+        # make sure another variable with same name hasn't been defined before
+        var_stacc = FUNC_STACC[-1]
+        curr_scope = var_exists(instance_name)
+        if curr_scope >= len(var_stacc) - 1:
+            raise ValueError("ValueError: " + instance_name + " already exists")
+            return
+        new_var = [struct_name, deepcopy(struct_type[1])]
+        var_dict = var_stacc[-1]
+        var_dict[instance_name] = new_var
         
 def run_program(p): # p[0] == 'Program': a bunch of statements
     for stmt in p: # statements in proglist
@@ -235,10 +306,10 @@ while True:
     for line in userin.split('\n'):
         print(line)
     print("=========================================\n{OUTPUT}")
-    # try:
-    run_program(parsed)
-    # except Exception as e:
-    #     print(e)
+    try:
+        run_program(parsed)
+    except Exception as e:
+        print(e)
     
     input("Press any key to run code again.")
 

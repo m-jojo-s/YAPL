@@ -29,6 +29,7 @@ tokens = [
     "NOT_EQUAL",
     "NOT",
     "LOGICAL", # AND, OR
+    "DOT",
     # DELIMITERS
     "COMMA",
     "SEMICOL",
@@ -64,6 +65,7 @@ t_LESSER_EQUAL = r'\<\='
 t_GREATER_EQUAL = r'\>\='
 t_IS_EQUAL = r'\=\='
 t_NOT_EQUAL = r'\!\='
+t_DOT = r'\.'
 t_SEMICOL = r'\;'
 t_COMMA = r'\,'
 t_L_ROUND = r'\('

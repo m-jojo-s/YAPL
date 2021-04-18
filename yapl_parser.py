@@ -94,11 +94,17 @@ def p_for_stmt(p):
     """
     p[0] = ("FOR", p[3], p[4], p[6], p[8])
 
-def p_struct(p):
+def p_struct_stmt(p):
     """
     stmt : STRUCT VAR_NAME dec_blk
     """
     p[0] = ("STRUCT", p[2], p[3])
+
+def p_struct_def(p):
+    """
+    stmt : VAR_NAME VAR_NAME SEMICOL
+    """
+    p[0] = ("DEC_STRUCT", p[1], p[2])
 
 def p_dec_stmt(p):
     """
@@ -136,6 +142,7 @@ def p_dec(p):
 def p_assign_stmt(p):
     """
     stmt : VAR_NAME ASSIGNMENT exp SEMICOL
+        | exp ASSIGNMENT exp SEMICOL
     """
     p[0] = ("ASSIGN", p[1], p[3])
 
@@ -162,6 +169,7 @@ def p_exp_bin(p):
         | exp IS_EQUAL exp
         | exp NOT_EQUAL exp
         | exp LOGICAL exp
+        | exp DOT VAR_NAME
     """
     p[0] = (p[2], p[1], p[3])
 
@@ -211,6 +219,9 @@ def p_exp_bool(p):
     p[0] = ("BOOL", p[1])
 
 def p_error(p):
+    if p == None:
+        print("Syntax error at end of file")
+        exit(1)
     print("Syntax error at token", p.value, p.type, p.lexpos)
     exit(1)
 
