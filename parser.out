@@ -1,0 +1,3575 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> stmt S
+Rule 2     S -> <empty>
+Rule 3     stmt -> exp SEMICOL
+Rule 4     stmt -> SEMICOL
+Rule 5     stmt -> L_ROUND R_ROUND
+Rule 6     stmt -> L_CURLY R_CURLY
+Rule 7     stmt -> L_SQR R_SQR
+Rule 8     stmt_blk -> L_CURLY S R_CURLY
+Rule 9     stmt -> PRINT L_ROUND args R_ROUND SEMICOL
+Rule 10    args -> exp
+Rule 11    args -> args COMMA args
+Rule 12    stmt -> if
+Rule 13    if -> IF L_ROUND exp R_ROUND stmt_blk else
+Rule 14    else -> ELSE stmt_blk
+Rule 15    else -> ELSE if
+Rule 16    else -> <empty>
+Rule 17    stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk
+Rule 18    stmt -> DATA_TYPE VAR_NAME SEMICOL
+Rule 19    stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL
+Rule 20    stmt -> VAR_NAME ASSIGNMENT exp SEMICOL
+Rule 21    exp -> L_ROUND exp R_ROUND
+Rule 22    exp -> L_CURLY exp R_CURLY
+Rule 23    exp -> L_SQR exp R_SQR
+Rule 24    exp -> exp PLUS exp
+Rule 25    exp -> exp MINUS exp
+Rule 26    exp -> exp ASTERISK exp
+Rule 27    exp -> exp FWSLASH exp
+Rule 28    exp -> exp TOPI exp
+Rule 29    exp -> exp MOD exp
+Rule 30    exp -> exp LESSER exp
+Rule 31    exp -> exp GREATER exp
+Rule 32    exp -> exp LESSER_EQUAL exp
+Rule 33    exp -> exp GREATER_EQUAL exp
+Rule 34    exp -> exp IS_EQUAL exp
+Rule 35    exp -> exp NOT_EQUAL exp
+Rule 36    exp -> exp LOGICAL exp
+Rule 37    exp -> MINUS exp
+Rule 38    exp -> NOT exp
+Rule 39    exp -> VAR_NAME PLUS_PLUS
+Rule 40    exp -> VAR_NAME MINUS_MINUS
+Rule 41    exp -> VAR_NAME
+Rule 42    exp -> INT
+Rule 43    exp -> FLOAT
+Rule 44    exp -> STRING
+Rule 45    exp -> CHAR
+Rule 46    exp -> BOOL
+
+Terminals, with rules where they appear
+
+ASSIGNMENT           : 19 20
+ASTERISK             : 26
+BOOL                 : 46
+CHAR                 : 45
+COMMA                : 11
+DATA_TYPE            : 18 19
+ELSE                 : 14 15
+FLOAT                : 43
+FOR                  : 17
+FWSLASH              : 27
+GREATER              : 31
+GREATER_EQUAL        : 33
+IF                   : 13
+INT                  : 42
+IS_EQUAL             : 34
+LESSER               : 30
+LESSER_EQUAL         : 32
+LOGICAL              : 36
+L_CURLY              : 6 8 22
+L_ROUND              : 5 9 13 17 21
+L_SQR                : 7 23
+MINUS                : 25 37
+MINUS_MINUS          : 40
+MOD                  : 29
+NOT                  : 38
+NOT_EQUAL            : 35
+PLUS                 : 24
+PLUS_PLUS            : 39
+PRINT                : 9
+R_CURLY              : 6 8 22
+R_ROUND              : 5 9 13 17 21
+R_SQR                : 7 23
+SEMICOL              : 3 4 9 17 18 19 20
+STRING               : 44
+TOPI                 : 28
+VAR_NAME             : 18 19 20 39 40 41
+error                : 
+
+Nonterminals, with rules where they appear
+
+S                    : 1 8 0
+args                 : 9 11 11
+else                 : 13
+exp                  : 3 10 13 17 19 20 21 22 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 38
+if                   : 12 15
+stmt                 : 1 17 17
+stmt_blk             : 13 14 17
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . stmt S
+    (2) S -> .
+    (3) stmt -> . exp SEMICOL
+    (4) stmt -> . SEMICOL
+    (5) stmt -> . L_ROUND R_ROUND
+    (6) stmt -> . L_CURLY R_CURLY
+    (7) stmt -> . L_SQR R_SQR
+    (9) stmt -> . PRINT L_ROUND args R_ROUND SEMICOL
+    (12) stmt -> . if
+    (17) stmt -> . FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk
+    (18) stmt -> . DATA_TYPE VAR_NAME SEMICOL
+    (19) stmt -> . DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL
+    (20) stmt -> . VAR_NAME ASSIGNMENT exp SEMICOL
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+    (13) if -> . IF L_ROUND exp R_ROUND stmt_blk else
+
+    $end            reduce using rule 2 (S -> .)
+    SEMICOL         shift and go to state 4
+    L_ROUND         shift and go to state 5
+    L_CURLY         shift and go to state 6
+    L_SQR           shift and go to state 7
+    PRINT           shift and go to state 8
+    FOR             shift and go to state 10
+    DATA_TYPE       shift and go to state 11
+    VAR_NAME        shift and go to state 12
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+    IF              shift and go to state 20
+
+    S                              shift and go to state 1
+    stmt                           shift and go to state 2
+    exp                            shift and go to state 3
+    if                             shift and go to state 9
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> stmt . S
+    (1) S -> . stmt S
+    (2) S -> .
+    (3) stmt -> . exp SEMICOL
+    (4) stmt -> . SEMICOL
+    (5) stmt -> . L_ROUND R_ROUND
+    (6) stmt -> . L_CURLY R_CURLY
+    (7) stmt -> . L_SQR R_SQR
+    (9) stmt -> . PRINT L_ROUND args R_ROUND SEMICOL
+    (12) stmt -> . if
+    (17) stmt -> . FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk
+    (18) stmt -> . DATA_TYPE VAR_NAME SEMICOL
+    (19) stmt -> . DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL
+    (20) stmt -> . VAR_NAME ASSIGNMENT exp SEMICOL
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+    (13) if -> . IF L_ROUND exp R_ROUND stmt_blk else
+
+    $end            reduce using rule 2 (S -> .)
+    R_CURLY         reduce using rule 2 (S -> .)
+    SEMICOL         shift and go to state 4
+    L_ROUND         shift and go to state 5
+    L_CURLY         shift and go to state 6
+    L_SQR           shift and go to state 7
+    PRINT           shift and go to state 8
+    FOR             shift and go to state 10
+    DATA_TYPE       shift and go to state 11
+    VAR_NAME        shift and go to state 12
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+    IF              shift and go to state 20
+
+    stmt                           shift and go to state 2
+    S                              shift and go to state 21
+    exp                            shift and go to state 3
+    if                             shift and go to state 9
+
+state 3
+
+    (3) stmt -> exp . SEMICOL
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+
+state 4
+
+    (4) stmt -> SEMICOL .
+
+    SEMICOL         reduce using rule 4 (stmt -> SEMICOL .)
+    L_ROUND         reduce using rule 4 (stmt -> SEMICOL .)
+    L_CURLY         reduce using rule 4 (stmt -> SEMICOL .)
+    L_SQR           reduce using rule 4 (stmt -> SEMICOL .)
+    PRINT           reduce using rule 4 (stmt -> SEMICOL .)
+    FOR             reduce using rule 4 (stmt -> SEMICOL .)
+    DATA_TYPE       reduce using rule 4 (stmt -> SEMICOL .)
+    VAR_NAME        reduce using rule 4 (stmt -> SEMICOL .)
+    MINUS           reduce using rule 4 (stmt -> SEMICOL .)
+    NOT             reduce using rule 4 (stmt -> SEMICOL .)
+    INT             reduce using rule 4 (stmt -> SEMICOL .)
+    FLOAT           reduce using rule 4 (stmt -> SEMICOL .)
+    STRING          reduce using rule 4 (stmt -> SEMICOL .)
+    CHAR            reduce using rule 4 (stmt -> SEMICOL .)
+    BOOL            reduce using rule 4 (stmt -> SEMICOL .)
+    IF              reduce using rule 4 (stmt -> SEMICOL .)
+    $end            reduce using rule 4 (stmt -> SEMICOL .)
+    R_CURLY         reduce using rule 4 (stmt -> SEMICOL .)
+    R_ROUND         reduce using rule 4 (stmt -> SEMICOL .)
+
+
+state 5
+
+    (5) stmt -> L_ROUND . R_ROUND
+    (21) exp -> L_ROUND . exp R_ROUND
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    R_ROUND         shift and go to state 37
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 38
+
+state 6
+
+    (6) stmt -> L_CURLY . R_CURLY
+    (22) exp -> L_CURLY . exp R_CURLY
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    R_CURLY         shift and go to state 42
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 43
+
+state 7
+
+    (7) stmt -> L_SQR . R_SQR
+    (23) exp -> L_SQR . exp R_SQR
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    R_SQR           shift and go to state 44
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 45
+
+state 8
+
+    (9) stmt -> PRINT . L_ROUND args R_ROUND SEMICOL
+
+    L_ROUND         shift and go to state 46
+
+
+state 9
+
+    (12) stmt -> if .
+
+    SEMICOL         reduce using rule 12 (stmt -> if .)
+    L_ROUND         reduce using rule 12 (stmt -> if .)
+    L_CURLY         reduce using rule 12 (stmt -> if .)
+    L_SQR           reduce using rule 12 (stmt -> if .)
+    PRINT           reduce using rule 12 (stmt -> if .)
+    FOR             reduce using rule 12 (stmt -> if .)
+    DATA_TYPE       reduce using rule 12 (stmt -> if .)
+    VAR_NAME        reduce using rule 12 (stmt -> if .)
+    MINUS           reduce using rule 12 (stmt -> if .)
+    NOT             reduce using rule 12 (stmt -> if .)
+    INT             reduce using rule 12 (stmt -> if .)
+    FLOAT           reduce using rule 12 (stmt -> if .)
+    STRING          reduce using rule 12 (stmt -> if .)
+    CHAR            reduce using rule 12 (stmt -> if .)
+    BOOL            reduce using rule 12 (stmt -> if .)
+    IF              reduce using rule 12 (stmt -> if .)
+    $end            reduce using rule 12 (stmt -> if .)
+    R_CURLY         reduce using rule 12 (stmt -> if .)
+    R_ROUND         reduce using rule 12 (stmt -> if .)
+
+
+state 10
+
+    (17) stmt -> FOR . L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk
+
+    L_ROUND         shift and go to state 47
+
+
+state 11
+
+    (18) stmt -> DATA_TYPE . VAR_NAME SEMICOL
+    (19) stmt -> DATA_TYPE . VAR_NAME ASSIGNMENT exp SEMICOL
+
+    VAR_NAME        shift and go to state 48
+
+
+state 12
+
+    (20) stmt -> VAR_NAME . ASSIGNMENT exp SEMICOL
+    (39) exp -> VAR_NAME . PLUS_PLUS
+    (40) exp -> VAR_NAME . MINUS_MINUS
+    (41) exp -> VAR_NAME .
+
+    ASSIGNMENT      shift and go to state 49
+    PLUS_PLUS       shift and go to state 50
+    MINUS_MINUS     shift and go to state 51
+    SEMICOL         reduce using rule 41 (exp -> VAR_NAME .)
+    PLUS            reduce using rule 41 (exp -> VAR_NAME .)
+    MINUS           reduce using rule 41 (exp -> VAR_NAME .)
+    ASTERISK        reduce using rule 41 (exp -> VAR_NAME .)
+    FWSLASH         reduce using rule 41 (exp -> VAR_NAME .)
+    TOPI            reduce using rule 41 (exp -> VAR_NAME .)
+    MOD             reduce using rule 41 (exp -> VAR_NAME .)
+    LESSER          reduce using rule 41 (exp -> VAR_NAME .)
+    GREATER         reduce using rule 41 (exp -> VAR_NAME .)
+    LESSER_EQUAL    reduce using rule 41 (exp -> VAR_NAME .)
+    GREATER_EQUAL   reduce using rule 41 (exp -> VAR_NAME .)
+    IS_EQUAL        reduce using rule 41 (exp -> VAR_NAME .)
+    NOT_EQUAL       reduce using rule 41 (exp -> VAR_NAME .)
+    LOGICAL         reduce using rule 41 (exp -> VAR_NAME .)
+
+
+state 13
+
+    (37) exp -> MINUS . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 52
+
+state 14
+
+    (38) exp -> NOT . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 53
+
+state 15
+
+    (42) exp -> INT .
+
+    SEMICOL         reduce using rule 42 (exp -> INT .)
+    PLUS            reduce using rule 42 (exp -> INT .)
+    MINUS           reduce using rule 42 (exp -> INT .)
+    ASTERISK        reduce using rule 42 (exp -> INT .)
+    FWSLASH         reduce using rule 42 (exp -> INT .)
+    TOPI            reduce using rule 42 (exp -> INT .)
+    MOD             reduce using rule 42 (exp -> INT .)
+    LESSER          reduce using rule 42 (exp -> INT .)
+    GREATER         reduce using rule 42 (exp -> INT .)
+    LESSER_EQUAL    reduce using rule 42 (exp -> INT .)
+    GREATER_EQUAL   reduce using rule 42 (exp -> INT .)
+    IS_EQUAL        reduce using rule 42 (exp -> INT .)
+    NOT_EQUAL       reduce using rule 42 (exp -> INT .)
+    LOGICAL         reduce using rule 42 (exp -> INT .)
+    R_ROUND         reduce using rule 42 (exp -> INT .)
+    R_CURLY         reduce using rule 42 (exp -> INT .)
+    R_SQR           reduce using rule 42 (exp -> INT .)
+    COMMA           reduce using rule 42 (exp -> INT .)
+
+
+state 16
+
+    (43) exp -> FLOAT .
+
+    SEMICOL         reduce using rule 43 (exp -> FLOAT .)
+    PLUS            reduce using rule 43 (exp -> FLOAT .)
+    MINUS           reduce using rule 43 (exp -> FLOAT .)
+    ASTERISK        reduce using rule 43 (exp -> FLOAT .)
+    FWSLASH         reduce using rule 43 (exp -> FLOAT .)
+    TOPI            reduce using rule 43 (exp -> FLOAT .)
+    MOD             reduce using rule 43 (exp -> FLOAT .)
+    LESSER          reduce using rule 43 (exp -> FLOAT .)
+    GREATER         reduce using rule 43 (exp -> FLOAT .)
+    LESSER_EQUAL    reduce using rule 43 (exp -> FLOAT .)
+    GREATER_EQUAL   reduce using rule 43 (exp -> FLOAT .)
+    IS_EQUAL        reduce using rule 43 (exp -> FLOAT .)
+    NOT_EQUAL       reduce using rule 43 (exp -> FLOAT .)
+    LOGICAL         reduce using rule 43 (exp -> FLOAT .)
+    R_ROUND         reduce using rule 43 (exp -> FLOAT .)
+    R_CURLY         reduce using rule 43 (exp -> FLOAT .)
+    R_SQR           reduce using rule 43 (exp -> FLOAT .)
+    COMMA           reduce using rule 43 (exp -> FLOAT .)
+
+
+state 17
+
+    (44) exp -> STRING .
+
+    SEMICOL         reduce using rule 44 (exp -> STRING .)
+    PLUS            reduce using rule 44 (exp -> STRING .)
+    MINUS           reduce using rule 44 (exp -> STRING .)
+    ASTERISK        reduce using rule 44 (exp -> STRING .)
+    FWSLASH         reduce using rule 44 (exp -> STRING .)
+    TOPI            reduce using rule 44 (exp -> STRING .)
+    MOD             reduce using rule 44 (exp -> STRING .)
+    LESSER          reduce using rule 44 (exp -> STRING .)
+    GREATER         reduce using rule 44 (exp -> STRING .)
+    LESSER_EQUAL    reduce using rule 44 (exp -> STRING .)
+    GREATER_EQUAL   reduce using rule 44 (exp -> STRING .)
+    IS_EQUAL        reduce using rule 44 (exp -> STRING .)
+    NOT_EQUAL       reduce using rule 44 (exp -> STRING .)
+    LOGICAL         reduce using rule 44 (exp -> STRING .)
+    R_ROUND         reduce using rule 44 (exp -> STRING .)
+    R_CURLY         reduce using rule 44 (exp -> STRING .)
+    R_SQR           reduce using rule 44 (exp -> STRING .)
+    COMMA           reduce using rule 44 (exp -> STRING .)
+
+
+state 18
+
+    (45) exp -> CHAR .
+
+    SEMICOL         reduce using rule 45 (exp -> CHAR .)
+    PLUS            reduce using rule 45 (exp -> CHAR .)
+    MINUS           reduce using rule 45 (exp -> CHAR .)
+    ASTERISK        reduce using rule 45 (exp -> CHAR .)
+    FWSLASH         reduce using rule 45 (exp -> CHAR .)
+    TOPI            reduce using rule 45 (exp -> CHAR .)
+    MOD             reduce using rule 45 (exp -> CHAR .)
+    LESSER          reduce using rule 45 (exp -> CHAR .)
+    GREATER         reduce using rule 45 (exp -> CHAR .)
+    LESSER_EQUAL    reduce using rule 45 (exp -> CHAR .)
+    GREATER_EQUAL   reduce using rule 45 (exp -> CHAR .)
+    IS_EQUAL        reduce using rule 45 (exp -> CHAR .)
+    NOT_EQUAL       reduce using rule 45 (exp -> CHAR .)
+    LOGICAL         reduce using rule 45 (exp -> CHAR .)
+    R_ROUND         reduce using rule 45 (exp -> CHAR .)
+    R_CURLY         reduce using rule 45 (exp -> CHAR .)
+    R_SQR           reduce using rule 45 (exp -> CHAR .)
+    COMMA           reduce using rule 45 (exp -> CHAR .)
+
+
+state 19
+
+    (46) exp -> BOOL .
+
+    SEMICOL         reduce using rule 46 (exp -> BOOL .)
+    PLUS            reduce using rule 46 (exp -> BOOL .)
+    MINUS           reduce using rule 46 (exp -> BOOL .)
+    ASTERISK        reduce using rule 46 (exp -> BOOL .)
+    FWSLASH         reduce using rule 46 (exp -> BOOL .)
+    TOPI            reduce using rule 46 (exp -> BOOL .)
+    MOD             reduce using rule 46 (exp -> BOOL .)
+    LESSER          reduce using rule 46 (exp -> BOOL .)
+    GREATER         reduce using rule 46 (exp -> BOOL .)
+    LESSER_EQUAL    reduce using rule 46 (exp -> BOOL .)
+    GREATER_EQUAL   reduce using rule 46 (exp -> BOOL .)
+    IS_EQUAL        reduce using rule 46 (exp -> BOOL .)
+    NOT_EQUAL       reduce using rule 46 (exp -> BOOL .)
+    LOGICAL         reduce using rule 46 (exp -> BOOL .)
+    R_ROUND         reduce using rule 46 (exp -> BOOL .)
+    R_CURLY         reduce using rule 46 (exp -> BOOL .)
+    R_SQR           reduce using rule 46 (exp -> BOOL .)
+    COMMA           reduce using rule 46 (exp -> BOOL .)
+
+
+state 20
+
+    (13) if -> IF . L_ROUND exp R_ROUND stmt_blk else
+
+    L_ROUND         shift and go to state 54
+
+
+state 21
+
+    (1) S -> stmt S .
+
+    $end            reduce using rule 1 (S -> stmt S .)
+    R_CURLY         reduce using rule 1 (S -> stmt S .)
+
+
+state 22
+
+    (3) stmt -> exp SEMICOL .
+
+    SEMICOL         reduce using rule 3 (stmt -> exp SEMICOL .)
+    L_ROUND         reduce using rule 3 (stmt -> exp SEMICOL .)
+    L_CURLY         reduce using rule 3 (stmt -> exp SEMICOL .)
+    L_SQR           reduce using rule 3 (stmt -> exp SEMICOL .)
+    PRINT           reduce using rule 3 (stmt -> exp SEMICOL .)
+    FOR             reduce using rule 3 (stmt -> exp SEMICOL .)
+    DATA_TYPE       reduce using rule 3 (stmt -> exp SEMICOL .)
+    VAR_NAME        reduce using rule 3 (stmt -> exp SEMICOL .)
+    MINUS           reduce using rule 3 (stmt -> exp SEMICOL .)
+    NOT             reduce using rule 3 (stmt -> exp SEMICOL .)
+    INT             reduce using rule 3 (stmt -> exp SEMICOL .)
+    FLOAT           reduce using rule 3 (stmt -> exp SEMICOL .)
+    STRING          reduce using rule 3 (stmt -> exp SEMICOL .)
+    CHAR            reduce using rule 3 (stmt -> exp SEMICOL .)
+    BOOL            reduce using rule 3 (stmt -> exp SEMICOL .)
+    IF              reduce using rule 3 (stmt -> exp SEMICOL .)
+    $end            reduce using rule 3 (stmt -> exp SEMICOL .)
+    R_CURLY         reduce using rule 3 (stmt -> exp SEMICOL .)
+    R_ROUND         reduce using rule 3 (stmt -> exp SEMICOL .)
+
+
+state 23
+
+    (24) exp -> exp PLUS . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 55
+
+state 24
+
+    (25) exp -> exp MINUS . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 56
+
+state 25
+
+    (26) exp -> exp ASTERISK . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 57
+
+state 26
+
+    (27) exp -> exp FWSLASH . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 58
+
+state 27
+
+    (28) exp -> exp TOPI . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 59
+
+state 28
+
+    (29) exp -> exp MOD . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 60
+
+state 29
+
+    (30) exp -> exp LESSER . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 61
+
+state 30
+
+    (31) exp -> exp GREATER . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 62
+
+state 31
+
+    (32) exp -> exp LESSER_EQUAL . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 63
+
+state 32
+
+    (33) exp -> exp GREATER_EQUAL . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 64
+
+state 33
+
+    (34) exp -> exp IS_EQUAL . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 65
+
+state 34
+
+    (35) exp -> exp NOT_EQUAL . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 66
+
+state 35
+
+    (36) exp -> exp LOGICAL . exp
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 67
+
+state 36
+
+    (21) exp -> L_ROUND . exp R_ROUND
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 38
+
+state 37
+
+    (5) stmt -> L_ROUND R_ROUND .
+
+    SEMICOL         reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    L_ROUND         reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    L_CURLY         reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    L_SQR           reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    PRINT           reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    FOR             reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    DATA_TYPE       reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    VAR_NAME        reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    MINUS           reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    NOT             reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    INT             reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    FLOAT           reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    STRING          reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    CHAR            reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    BOOL            reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    IF              reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    $end            reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    R_CURLY         reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+    R_ROUND         reduce using rule 5 (stmt -> L_ROUND R_ROUND .)
+
+
+state 38
+
+    (21) exp -> L_ROUND exp . R_ROUND
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    R_ROUND         shift and go to state 68
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+
+state 39
+
+    (22) exp -> L_CURLY . exp R_CURLY
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 43
+
+state 40
+
+    (23) exp -> L_SQR . exp R_SQR
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 45
+
+state 41
+
+    (39) exp -> VAR_NAME . PLUS_PLUS
+    (40) exp -> VAR_NAME . MINUS_MINUS
+    (41) exp -> VAR_NAME .
+
+    PLUS_PLUS       shift and go to state 50
+    MINUS_MINUS     shift and go to state 51
+    R_ROUND         reduce using rule 41 (exp -> VAR_NAME .)
+    PLUS            reduce using rule 41 (exp -> VAR_NAME .)
+    MINUS           reduce using rule 41 (exp -> VAR_NAME .)
+    ASTERISK        reduce using rule 41 (exp -> VAR_NAME .)
+    FWSLASH         reduce using rule 41 (exp -> VAR_NAME .)
+    TOPI            reduce using rule 41 (exp -> VAR_NAME .)
+    MOD             reduce using rule 41 (exp -> VAR_NAME .)
+    LESSER          reduce using rule 41 (exp -> VAR_NAME .)
+    GREATER         reduce using rule 41 (exp -> VAR_NAME .)
+    LESSER_EQUAL    reduce using rule 41 (exp -> VAR_NAME .)
+    GREATER_EQUAL   reduce using rule 41 (exp -> VAR_NAME .)
+    IS_EQUAL        reduce using rule 41 (exp -> VAR_NAME .)
+    NOT_EQUAL       reduce using rule 41 (exp -> VAR_NAME .)
+    LOGICAL         reduce using rule 41 (exp -> VAR_NAME .)
+    R_CURLY         reduce using rule 41 (exp -> VAR_NAME .)
+    R_SQR           reduce using rule 41 (exp -> VAR_NAME .)
+    SEMICOL         reduce using rule 41 (exp -> VAR_NAME .)
+    COMMA           reduce using rule 41 (exp -> VAR_NAME .)
+
+
+state 42
+
+    (6) stmt -> L_CURLY R_CURLY .
+
+    SEMICOL         reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    L_ROUND         reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    L_CURLY         reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    L_SQR           reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    PRINT           reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    FOR             reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    DATA_TYPE       reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    VAR_NAME        reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    MINUS           reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    NOT             reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    INT             reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    FLOAT           reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    STRING          reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    CHAR            reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    BOOL            reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    IF              reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    $end            reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    R_CURLY         reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+    R_ROUND         reduce using rule 6 (stmt -> L_CURLY R_CURLY .)
+
+
+state 43
+
+    (22) exp -> L_CURLY exp . R_CURLY
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    R_CURLY         shift and go to state 69
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+
+state 44
+
+    (7) stmt -> L_SQR R_SQR .
+
+    SEMICOL         reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    L_ROUND         reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    L_CURLY         reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    L_SQR           reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    PRINT           reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    FOR             reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    DATA_TYPE       reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    VAR_NAME        reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    MINUS           reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    NOT             reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    INT             reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    FLOAT           reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    STRING          reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    CHAR            reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    BOOL            reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    IF              reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    $end            reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    R_CURLY         reduce using rule 7 (stmt -> L_SQR R_SQR .)
+    R_ROUND         reduce using rule 7 (stmt -> L_SQR R_SQR .)
+
+
+state 45
+
+    (23) exp -> L_SQR exp . R_SQR
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    R_SQR           shift and go to state 70
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+
+state 46
+
+    (9) stmt -> PRINT L_ROUND . args R_ROUND SEMICOL
+    (10) args -> . exp
+    (11) args -> . args COMMA args
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    args                           shift and go to state 71
+    exp                            shift and go to state 72
+
+state 47
+
+    (17) stmt -> FOR L_ROUND . stmt exp SEMICOL stmt R_ROUND stmt_blk
+    (3) stmt -> . exp SEMICOL
+    (4) stmt -> . SEMICOL
+    (5) stmt -> . L_ROUND R_ROUND
+    (6) stmt -> . L_CURLY R_CURLY
+    (7) stmt -> . L_SQR R_SQR
+    (9) stmt -> . PRINT L_ROUND args R_ROUND SEMICOL
+    (12) stmt -> . if
+    (17) stmt -> . FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk
+    (18) stmt -> . DATA_TYPE VAR_NAME SEMICOL
+    (19) stmt -> . DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL
+    (20) stmt -> . VAR_NAME ASSIGNMENT exp SEMICOL
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+    (13) if -> . IF L_ROUND exp R_ROUND stmt_blk else
+
+    SEMICOL         shift and go to state 4
+    L_ROUND         shift and go to state 5
+    L_CURLY         shift and go to state 6
+    L_SQR           shift and go to state 7
+    PRINT           shift and go to state 8
+    FOR             shift and go to state 10
+    DATA_TYPE       shift and go to state 11
+    VAR_NAME        shift and go to state 12
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+    IF              shift and go to state 20
+
+    stmt                           shift and go to state 73
+    exp                            shift and go to state 3
+    if                             shift and go to state 9
+
+state 48
+
+    (18) stmt -> DATA_TYPE VAR_NAME . SEMICOL
+    (19) stmt -> DATA_TYPE VAR_NAME . ASSIGNMENT exp SEMICOL
+
+    SEMICOL         shift and go to state 74
+    ASSIGNMENT      shift and go to state 75
+
+
+state 49
+
+    (20) stmt -> VAR_NAME ASSIGNMENT . exp SEMICOL
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 76
+
+state 50
+
+    (39) exp -> VAR_NAME PLUS_PLUS .
+
+    SEMICOL         reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    PLUS            reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    MINUS           reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    ASTERISK        reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    FWSLASH         reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    TOPI            reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    MOD             reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    LESSER          reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    GREATER         reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    LESSER_EQUAL    reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    GREATER_EQUAL   reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    IS_EQUAL        reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    NOT_EQUAL       reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    LOGICAL         reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    R_ROUND         reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    R_CURLY         reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    R_SQR           reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+    COMMA           reduce using rule 39 (exp -> VAR_NAME PLUS_PLUS .)
+
+
+state 51
+
+    (40) exp -> VAR_NAME MINUS_MINUS .
+
+    SEMICOL         reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    PLUS            reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    MINUS           reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    ASTERISK        reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    FWSLASH         reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    TOPI            reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    MOD             reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    LESSER          reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    GREATER         reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    LESSER_EQUAL    reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    GREATER_EQUAL   reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    IS_EQUAL        reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    NOT_EQUAL       reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    LOGICAL         reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    R_ROUND         reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    R_CURLY         reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    R_SQR           reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+    COMMA           reduce using rule 40 (exp -> VAR_NAME MINUS_MINUS .)
+
+
+state 52
+
+    (37) exp -> MINUS exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 37 (exp -> MINUS exp .)
+    PLUS            reduce using rule 37 (exp -> MINUS exp .)
+    MINUS           reduce using rule 37 (exp -> MINUS exp .)
+    LESSER          reduce using rule 37 (exp -> MINUS exp .)
+    GREATER         reduce using rule 37 (exp -> MINUS exp .)
+    LESSER_EQUAL    reduce using rule 37 (exp -> MINUS exp .)
+    GREATER_EQUAL   reduce using rule 37 (exp -> MINUS exp .)
+    IS_EQUAL        reduce using rule 37 (exp -> MINUS exp .)
+    NOT_EQUAL       reduce using rule 37 (exp -> MINUS exp .)
+    LOGICAL         reduce using rule 37 (exp -> MINUS exp .)
+    R_ROUND         reduce using rule 37 (exp -> MINUS exp .)
+    R_CURLY         reduce using rule 37 (exp -> MINUS exp .)
+    R_SQR           reduce using rule 37 (exp -> MINUS exp .)
+    COMMA           reduce using rule 37 (exp -> MINUS exp .)
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! ASTERISK        [ reduce using rule 37 (exp -> MINUS exp .) ]
+  ! FWSLASH         [ reduce using rule 37 (exp -> MINUS exp .) ]
+  ! TOPI            [ reduce using rule 37 (exp -> MINUS exp .) ]
+  ! MOD             [ reduce using rule 37 (exp -> MINUS exp .) ]
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 53
+
+    (38) exp -> NOT exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for ASTERISK resolved as shift
+  ! shift/reduce conflict for FWSLASH resolved as shift
+  ! shift/reduce conflict for TOPI resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for LESSER resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESSER_EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER_EQUAL resolved as shift
+  ! shift/reduce conflict for IS_EQUAL resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+  ! shift/reduce conflict for LOGICAL resolved as shift
+    SEMICOL         reduce using rule 38 (exp -> NOT exp .)
+    R_ROUND         reduce using rule 38 (exp -> NOT exp .)
+    R_CURLY         reduce using rule 38 (exp -> NOT exp .)
+    R_SQR           reduce using rule 38 (exp -> NOT exp .)
+    COMMA           reduce using rule 38 (exp -> NOT exp .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+  ! PLUS            [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! MINUS           [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! ASTERISK        [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! FWSLASH         [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! TOPI            [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! MOD             [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! LESSER          [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! GREATER         [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! LESSER_EQUAL    [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! GREATER_EQUAL   [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! IS_EQUAL        [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! NOT_EQUAL       [ reduce using rule 38 (exp -> NOT exp .) ]
+  ! LOGICAL         [ reduce using rule 38 (exp -> NOT exp .) ]
+
+
+state 54
+
+    (13) if -> IF L_ROUND . exp R_ROUND stmt_blk else
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 77
+
+state 55
+
+    (24) exp -> exp PLUS exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 24 (exp -> exp PLUS exp .)
+    PLUS            reduce using rule 24 (exp -> exp PLUS exp .)
+    MINUS           reduce using rule 24 (exp -> exp PLUS exp .)
+    LESSER          reduce using rule 24 (exp -> exp PLUS exp .)
+    GREATER         reduce using rule 24 (exp -> exp PLUS exp .)
+    LESSER_EQUAL    reduce using rule 24 (exp -> exp PLUS exp .)
+    GREATER_EQUAL   reduce using rule 24 (exp -> exp PLUS exp .)
+    IS_EQUAL        reduce using rule 24 (exp -> exp PLUS exp .)
+    NOT_EQUAL       reduce using rule 24 (exp -> exp PLUS exp .)
+    LOGICAL         reduce using rule 24 (exp -> exp PLUS exp .)
+    R_ROUND         reduce using rule 24 (exp -> exp PLUS exp .)
+    R_CURLY         reduce using rule 24 (exp -> exp PLUS exp .)
+    R_SQR           reduce using rule 24 (exp -> exp PLUS exp .)
+    COMMA           reduce using rule 24 (exp -> exp PLUS exp .)
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! ASTERISK        [ reduce using rule 24 (exp -> exp PLUS exp .) ]
+  ! FWSLASH         [ reduce using rule 24 (exp -> exp PLUS exp .) ]
+  ! TOPI            [ reduce using rule 24 (exp -> exp PLUS exp .) ]
+  ! MOD             [ reduce using rule 24 (exp -> exp PLUS exp .) ]
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 56
+
+    (25) exp -> exp MINUS exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 25 (exp -> exp MINUS exp .)
+    PLUS            reduce using rule 25 (exp -> exp MINUS exp .)
+    MINUS           reduce using rule 25 (exp -> exp MINUS exp .)
+    LESSER          reduce using rule 25 (exp -> exp MINUS exp .)
+    GREATER         reduce using rule 25 (exp -> exp MINUS exp .)
+    LESSER_EQUAL    reduce using rule 25 (exp -> exp MINUS exp .)
+    GREATER_EQUAL   reduce using rule 25 (exp -> exp MINUS exp .)
+    IS_EQUAL        reduce using rule 25 (exp -> exp MINUS exp .)
+    NOT_EQUAL       reduce using rule 25 (exp -> exp MINUS exp .)
+    LOGICAL         reduce using rule 25 (exp -> exp MINUS exp .)
+    R_ROUND         reduce using rule 25 (exp -> exp MINUS exp .)
+    R_CURLY         reduce using rule 25 (exp -> exp MINUS exp .)
+    R_SQR           reduce using rule 25 (exp -> exp MINUS exp .)
+    COMMA           reduce using rule 25 (exp -> exp MINUS exp .)
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! ASTERISK        [ reduce using rule 25 (exp -> exp MINUS exp .) ]
+  ! FWSLASH         [ reduce using rule 25 (exp -> exp MINUS exp .) ]
+  ! TOPI            [ reduce using rule 25 (exp -> exp MINUS exp .) ]
+  ! MOD             [ reduce using rule 25 (exp -> exp MINUS exp .) ]
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 57
+
+    (26) exp -> exp ASTERISK exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 26 (exp -> exp ASTERISK exp .)
+    PLUS            reduce using rule 26 (exp -> exp ASTERISK exp .)
+    MINUS           reduce using rule 26 (exp -> exp ASTERISK exp .)
+    ASTERISK        reduce using rule 26 (exp -> exp ASTERISK exp .)
+    FWSLASH         reduce using rule 26 (exp -> exp ASTERISK exp .)
+    LESSER          reduce using rule 26 (exp -> exp ASTERISK exp .)
+    GREATER         reduce using rule 26 (exp -> exp ASTERISK exp .)
+    LESSER_EQUAL    reduce using rule 26 (exp -> exp ASTERISK exp .)
+    GREATER_EQUAL   reduce using rule 26 (exp -> exp ASTERISK exp .)
+    IS_EQUAL        reduce using rule 26 (exp -> exp ASTERISK exp .)
+    NOT_EQUAL       reduce using rule 26 (exp -> exp ASTERISK exp .)
+    LOGICAL         reduce using rule 26 (exp -> exp ASTERISK exp .)
+    R_ROUND         reduce using rule 26 (exp -> exp ASTERISK exp .)
+    R_CURLY         reduce using rule 26 (exp -> exp ASTERISK exp .)
+    R_SQR           reduce using rule 26 (exp -> exp ASTERISK exp .)
+    COMMA           reduce using rule 26 (exp -> exp ASTERISK exp .)
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! TOPI            [ reduce using rule 26 (exp -> exp ASTERISK exp .) ]
+  ! MOD             [ reduce using rule 26 (exp -> exp ASTERISK exp .) ]
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+  ! ASTERISK        [ shift and go to state 25 ]
+  ! FWSLASH         [ shift and go to state 26 ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 58
+
+    (27) exp -> exp FWSLASH exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 27 (exp -> exp FWSLASH exp .)
+    PLUS            reduce using rule 27 (exp -> exp FWSLASH exp .)
+    MINUS           reduce using rule 27 (exp -> exp FWSLASH exp .)
+    ASTERISK        reduce using rule 27 (exp -> exp FWSLASH exp .)
+    FWSLASH         reduce using rule 27 (exp -> exp FWSLASH exp .)
+    LESSER          reduce using rule 27 (exp -> exp FWSLASH exp .)
+    GREATER         reduce using rule 27 (exp -> exp FWSLASH exp .)
+    LESSER_EQUAL    reduce using rule 27 (exp -> exp FWSLASH exp .)
+    GREATER_EQUAL   reduce using rule 27 (exp -> exp FWSLASH exp .)
+    IS_EQUAL        reduce using rule 27 (exp -> exp FWSLASH exp .)
+    NOT_EQUAL       reduce using rule 27 (exp -> exp FWSLASH exp .)
+    LOGICAL         reduce using rule 27 (exp -> exp FWSLASH exp .)
+    R_ROUND         reduce using rule 27 (exp -> exp FWSLASH exp .)
+    R_CURLY         reduce using rule 27 (exp -> exp FWSLASH exp .)
+    R_SQR           reduce using rule 27 (exp -> exp FWSLASH exp .)
+    COMMA           reduce using rule 27 (exp -> exp FWSLASH exp .)
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! TOPI            [ reduce using rule 27 (exp -> exp FWSLASH exp .) ]
+  ! MOD             [ reduce using rule 27 (exp -> exp FWSLASH exp .) ]
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+  ! ASTERISK        [ shift and go to state 25 ]
+  ! FWSLASH         [ shift and go to state 26 ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 59
+
+    (28) exp -> exp TOPI exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 28 (exp -> exp TOPI exp .)
+    PLUS            reduce using rule 28 (exp -> exp TOPI exp .)
+    MINUS           reduce using rule 28 (exp -> exp TOPI exp .)
+    ASTERISK        reduce using rule 28 (exp -> exp TOPI exp .)
+    FWSLASH         reduce using rule 28 (exp -> exp TOPI exp .)
+    TOPI            reduce using rule 28 (exp -> exp TOPI exp .)
+    MOD             reduce using rule 28 (exp -> exp TOPI exp .)
+    LESSER          reduce using rule 28 (exp -> exp TOPI exp .)
+    GREATER         reduce using rule 28 (exp -> exp TOPI exp .)
+    LESSER_EQUAL    reduce using rule 28 (exp -> exp TOPI exp .)
+    GREATER_EQUAL   reduce using rule 28 (exp -> exp TOPI exp .)
+    IS_EQUAL        reduce using rule 28 (exp -> exp TOPI exp .)
+    NOT_EQUAL       reduce using rule 28 (exp -> exp TOPI exp .)
+    LOGICAL         reduce using rule 28 (exp -> exp TOPI exp .)
+    R_ROUND         reduce using rule 28 (exp -> exp TOPI exp .)
+    R_CURLY         reduce using rule 28 (exp -> exp TOPI exp .)
+    R_SQR           reduce using rule 28 (exp -> exp TOPI exp .)
+    COMMA           reduce using rule 28 (exp -> exp TOPI exp .)
+
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+  ! ASTERISK        [ shift and go to state 25 ]
+  ! FWSLASH         [ shift and go to state 26 ]
+  ! TOPI            [ shift and go to state 27 ]
+  ! MOD             [ shift and go to state 28 ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 60
+
+    (29) exp -> exp MOD exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 29 (exp -> exp MOD exp .)
+    PLUS            reduce using rule 29 (exp -> exp MOD exp .)
+    MINUS           reduce using rule 29 (exp -> exp MOD exp .)
+    ASTERISK        reduce using rule 29 (exp -> exp MOD exp .)
+    FWSLASH         reduce using rule 29 (exp -> exp MOD exp .)
+    TOPI            reduce using rule 29 (exp -> exp MOD exp .)
+    MOD             reduce using rule 29 (exp -> exp MOD exp .)
+    LESSER          reduce using rule 29 (exp -> exp MOD exp .)
+    GREATER         reduce using rule 29 (exp -> exp MOD exp .)
+    LESSER_EQUAL    reduce using rule 29 (exp -> exp MOD exp .)
+    GREATER_EQUAL   reduce using rule 29 (exp -> exp MOD exp .)
+    IS_EQUAL        reduce using rule 29 (exp -> exp MOD exp .)
+    NOT_EQUAL       reduce using rule 29 (exp -> exp MOD exp .)
+    LOGICAL         reduce using rule 29 (exp -> exp MOD exp .)
+    R_ROUND         reduce using rule 29 (exp -> exp MOD exp .)
+    R_CURLY         reduce using rule 29 (exp -> exp MOD exp .)
+    R_SQR           reduce using rule 29 (exp -> exp MOD exp .)
+    COMMA           reduce using rule 29 (exp -> exp MOD exp .)
+
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+  ! ASTERISK        [ shift and go to state 25 ]
+  ! FWSLASH         [ shift and go to state 26 ]
+  ! TOPI            [ shift and go to state 27 ]
+  ! MOD             [ shift and go to state 28 ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 61
+
+    (30) exp -> exp LESSER exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 30 (exp -> exp LESSER exp .)
+    LESSER          reduce using rule 30 (exp -> exp LESSER exp .)
+    GREATER         reduce using rule 30 (exp -> exp LESSER exp .)
+    LESSER_EQUAL    reduce using rule 30 (exp -> exp LESSER exp .)
+    GREATER_EQUAL   reduce using rule 30 (exp -> exp LESSER exp .)
+    IS_EQUAL        reduce using rule 30 (exp -> exp LESSER exp .)
+    NOT_EQUAL       reduce using rule 30 (exp -> exp LESSER exp .)
+    LOGICAL         reduce using rule 30 (exp -> exp LESSER exp .)
+    R_ROUND         reduce using rule 30 (exp -> exp LESSER exp .)
+    R_CURLY         reduce using rule 30 (exp -> exp LESSER exp .)
+    R_SQR           reduce using rule 30 (exp -> exp LESSER exp .)
+    COMMA           reduce using rule 30 (exp -> exp LESSER exp .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! PLUS            [ reduce using rule 30 (exp -> exp LESSER exp .) ]
+  ! MINUS           [ reduce using rule 30 (exp -> exp LESSER exp .) ]
+  ! ASTERISK        [ reduce using rule 30 (exp -> exp LESSER exp .) ]
+  ! FWSLASH         [ reduce using rule 30 (exp -> exp LESSER exp .) ]
+  ! TOPI            [ reduce using rule 30 (exp -> exp LESSER exp .) ]
+  ! MOD             [ reduce using rule 30 (exp -> exp LESSER exp .) ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 62
+
+    (31) exp -> exp GREATER exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 31 (exp -> exp GREATER exp .)
+    LESSER          reduce using rule 31 (exp -> exp GREATER exp .)
+    GREATER         reduce using rule 31 (exp -> exp GREATER exp .)
+    LESSER_EQUAL    reduce using rule 31 (exp -> exp GREATER exp .)
+    GREATER_EQUAL   reduce using rule 31 (exp -> exp GREATER exp .)
+    IS_EQUAL        reduce using rule 31 (exp -> exp GREATER exp .)
+    NOT_EQUAL       reduce using rule 31 (exp -> exp GREATER exp .)
+    LOGICAL         reduce using rule 31 (exp -> exp GREATER exp .)
+    R_ROUND         reduce using rule 31 (exp -> exp GREATER exp .)
+    R_CURLY         reduce using rule 31 (exp -> exp GREATER exp .)
+    R_SQR           reduce using rule 31 (exp -> exp GREATER exp .)
+    COMMA           reduce using rule 31 (exp -> exp GREATER exp .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! PLUS            [ reduce using rule 31 (exp -> exp GREATER exp .) ]
+  ! MINUS           [ reduce using rule 31 (exp -> exp GREATER exp .) ]
+  ! ASTERISK        [ reduce using rule 31 (exp -> exp GREATER exp .) ]
+  ! FWSLASH         [ reduce using rule 31 (exp -> exp GREATER exp .) ]
+  ! TOPI            [ reduce using rule 31 (exp -> exp GREATER exp .) ]
+  ! MOD             [ reduce using rule 31 (exp -> exp GREATER exp .) ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 63
+
+    (32) exp -> exp LESSER_EQUAL exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    LESSER          reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    GREATER         reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    LESSER_EQUAL    reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    GREATER_EQUAL   reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    IS_EQUAL        reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    NOT_EQUAL       reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    LOGICAL         reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    R_ROUND         reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    R_CURLY         reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    R_SQR           reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    COMMA           reduce using rule 32 (exp -> exp LESSER_EQUAL exp .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! PLUS            [ reduce using rule 32 (exp -> exp LESSER_EQUAL exp .) ]
+  ! MINUS           [ reduce using rule 32 (exp -> exp LESSER_EQUAL exp .) ]
+  ! ASTERISK        [ reduce using rule 32 (exp -> exp LESSER_EQUAL exp .) ]
+  ! FWSLASH         [ reduce using rule 32 (exp -> exp LESSER_EQUAL exp .) ]
+  ! TOPI            [ reduce using rule 32 (exp -> exp LESSER_EQUAL exp .) ]
+  ! MOD             [ reduce using rule 32 (exp -> exp LESSER_EQUAL exp .) ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 64
+
+    (33) exp -> exp GREATER_EQUAL exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    LESSER          reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    GREATER         reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    LESSER_EQUAL    reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    GREATER_EQUAL   reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    IS_EQUAL        reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    NOT_EQUAL       reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    LOGICAL         reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    R_ROUND         reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    R_CURLY         reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    R_SQR           reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    COMMA           reduce using rule 33 (exp -> exp GREATER_EQUAL exp .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! PLUS            [ reduce using rule 33 (exp -> exp GREATER_EQUAL exp .) ]
+  ! MINUS           [ reduce using rule 33 (exp -> exp GREATER_EQUAL exp .) ]
+  ! ASTERISK        [ reduce using rule 33 (exp -> exp GREATER_EQUAL exp .) ]
+  ! FWSLASH         [ reduce using rule 33 (exp -> exp GREATER_EQUAL exp .) ]
+  ! TOPI            [ reduce using rule 33 (exp -> exp GREATER_EQUAL exp .) ]
+  ! MOD             [ reduce using rule 33 (exp -> exp GREATER_EQUAL exp .) ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 65
+
+    (34) exp -> exp IS_EQUAL exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    LESSER          reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    GREATER         reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    LESSER_EQUAL    reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    GREATER_EQUAL   reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    IS_EQUAL        reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    NOT_EQUAL       reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    LOGICAL         reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    R_ROUND         reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    R_CURLY         reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    R_SQR           reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    COMMA           reduce using rule 34 (exp -> exp IS_EQUAL exp .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! PLUS            [ reduce using rule 34 (exp -> exp IS_EQUAL exp .) ]
+  ! MINUS           [ reduce using rule 34 (exp -> exp IS_EQUAL exp .) ]
+  ! ASTERISK        [ reduce using rule 34 (exp -> exp IS_EQUAL exp .) ]
+  ! FWSLASH         [ reduce using rule 34 (exp -> exp IS_EQUAL exp .) ]
+  ! TOPI            [ reduce using rule 34 (exp -> exp IS_EQUAL exp .) ]
+  ! MOD             [ reduce using rule 34 (exp -> exp IS_EQUAL exp .) ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 66
+
+    (35) exp -> exp NOT_EQUAL exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    LESSER          reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    GREATER         reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    LESSER_EQUAL    reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    GREATER_EQUAL   reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    IS_EQUAL        reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    NOT_EQUAL       reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    LOGICAL         reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    R_ROUND         reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    R_CURLY         reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    R_SQR           reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    COMMA           reduce using rule 35 (exp -> exp NOT_EQUAL exp .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! PLUS            [ reduce using rule 35 (exp -> exp NOT_EQUAL exp .) ]
+  ! MINUS           [ reduce using rule 35 (exp -> exp NOT_EQUAL exp .) ]
+  ! ASTERISK        [ reduce using rule 35 (exp -> exp NOT_EQUAL exp .) ]
+  ! FWSLASH         [ reduce using rule 35 (exp -> exp NOT_EQUAL exp .) ]
+  ! TOPI            [ reduce using rule 35 (exp -> exp NOT_EQUAL exp .) ]
+  ! MOD             [ reduce using rule 35 (exp -> exp NOT_EQUAL exp .) ]
+  ! LESSER          [ shift and go to state 29 ]
+  ! GREATER         [ shift and go to state 30 ]
+  ! LESSER_EQUAL    [ shift and go to state 31 ]
+  ! GREATER_EQUAL   [ shift and go to state 32 ]
+  ! IS_EQUAL        [ shift and go to state 33 ]
+  ! NOT_EQUAL       [ shift and go to state 34 ]
+  ! LOGICAL         [ shift and go to state 35 ]
+
+
+state 67
+
+    (36) exp -> exp LOGICAL exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for ASTERISK resolved as shift
+  ! shift/reduce conflict for FWSLASH resolved as shift
+  ! shift/reduce conflict for TOPI resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for LESSER resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESSER_EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER_EQUAL resolved as shift
+  ! shift/reduce conflict for IS_EQUAL resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+  ! shift/reduce conflict for LOGICAL resolved as shift
+    SEMICOL         reduce using rule 36 (exp -> exp LOGICAL exp .)
+    R_ROUND         reduce using rule 36 (exp -> exp LOGICAL exp .)
+    R_CURLY         reduce using rule 36 (exp -> exp LOGICAL exp .)
+    R_SQR           reduce using rule 36 (exp -> exp LOGICAL exp .)
+    COMMA           reduce using rule 36 (exp -> exp LOGICAL exp .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+  ! PLUS            [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! MINUS           [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! ASTERISK        [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! FWSLASH         [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! TOPI            [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! MOD             [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! LESSER          [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! GREATER         [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! LESSER_EQUAL    [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! GREATER_EQUAL   [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! IS_EQUAL        [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! NOT_EQUAL       [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+  ! LOGICAL         [ reduce using rule 36 (exp -> exp LOGICAL exp .) ]
+
+
+state 68
+
+    (21) exp -> L_ROUND exp R_ROUND .
+
+    SEMICOL         reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    PLUS            reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    MINUS           reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    ASTERISK        reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    FWSLASH         reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    TOPI            reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    MOD             reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    LESSER          reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    GREATER         reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    LESSER_EQUAL    reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    GREATER_EQUAL   reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    IS_EQUAL        reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    NOT_EQUAL       reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    LOGICAL         reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    R_ROUND         reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    R_CURLY         reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    R_SQR           reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+    COMMA           reduce using rule 21 (exp -> L_ROUND exp R_ROUND .)
+
+
+state 69
+
+    (22) exp -> L_CURLY exp R_CURLY .
+
+    SEMICOL         reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    PLUS            reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    MINUS           reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    ASTERISK        reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    FWSLASH         reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    TOPI            reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    MOD             reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    LESSER          reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    GREATER         reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    LESSER_EQUAL    reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    GREATER_EQUAL   reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    IS_EQUAL        reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    NOT_EQUAL       reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    LOGICAL         reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    R_ROUND         reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    R_CURLY         reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    R_SQR           reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+    COMMA           reduce using rule 22 (exp -> L_CURLY exp R_CURLY .)
+
+
+state 70
+
+    (23) exp -> L_SQR exp R_SQR .
+
+    SEMICOL         reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    PLUS            reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    MINUS           reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    ASTERISK        reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    FWSLASH         reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    TOPI            reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    MOD             reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    LESSER          reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    GREATER         reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    LESSER_EQUAL    reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    GREATER_EQUAL   reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    IS_EQUAL        reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    NOT_EQUAL       reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    LOGICAL         reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    R_ROUND         reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    R_CURLY         reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    R_SQR           reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+    COMMA           reduce using rule 23 (exp -> L_SQR exp R_SQR .)
+
+
+state 71
+
+    (9) stmt -> PRINT L_ROUND args . R_ROUND SEMICOL
+    (11) args -> args . COMMA args
+
+    R_ROUND         shift and go to state 78
+    COMMA           shift and go to state 79
+
+
+state 72
+
+    (10) args -> exp .
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    R_ROUND         reduce using rule 10 (args -> exp .)
+    COMMA           reduce using rule 10 (args -> exp .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+
+state 73
+
+    (17) stmt -> FOR L_ROUND stmt . exp SEMICOL stmt R_ROUND stmt_blk
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 80
+
+state 74
+
+    (18) stmt -> DATA_TYPE VAR_NAME SEMICOL .
+
+    SEMICOL         reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    L_ROUND         reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    L_CURLY         reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    L_SQR           reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    PRINT           reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    FOR             reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    DATA_TYPE       reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    VAR_NAME        reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    MINUS           reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    NOT             reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    INT             reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    FLOAT           reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    STRING          reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    CHAR            reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    BOOL            reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    IF              reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    $end            reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    R_CURLY         reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+    R_ROUND         reduce using rule 18 (stmt -> DATA_TYPE VAR_NAME SEMICOL .)
+
+
+state 75
+
+    (19) stmt -> DATA_TYPE VAR_NAME ASSIGNMENT . exp SEMICOL
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    exp                            shift and go to state 81
+
+state 76
+
+    (20) stmt -> VAR_NAME ASSIGNMENT exp . SEMICOL
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         shift and go to state 82
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+
+state 77
+
+    (13) if -> IF L_ROUND exp . R_ROUND stmt_blk else
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    R_ROUND         shift and go to state 83
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+
+state 78
+
+    (9) stmt -> PRINT L_ROUND args R_ROUND . SEMICOL
+
+    SEMICOL         shift and go to state 84
+
+
+state 79
+
+    (11) args -> args COMMA . args
+    (10) args -> . exp
+    (11) args -> . args COMMA args
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+
+    L_ROUND         shift and go to state 36
+    L_CURLY         shift and go to state 39
+    L_SQR           shift and go to state 40
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    VAR_NAME        shift and go to state 41
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+
+    args                           shift and go to state 85
+    exp                            shift and go to state 72
+
+state 80
+
+    (17) stmt -> FOR L_ROUND stmt exp . SEMICOL stmt R_ROUND stmt_blk
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         shift and go to state 86
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+
+state 81
+
+    (19) stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp . SEMICOL
+    (24) exp -> exp . PLUS exp
+    (25) exp -> exp . MINUS exp
+    (26) exp -> exp . ASTERISK exp
+    (27) exp -> exp . FWSLASH exp
+    (28) exp -> exp . TOPI exp
+    (29) exp -> exp . MOD exp
+    (30) exp -> exp . LESSER exp
+    (31) exp -> exp . GREATER exp
+    (32) exp -> exp . LESSER_EQUAL exp
+    (33) exp -> exp . GREATER_EQUAL exp
+    (34) exp -> exp . IS_EQUAL exp
+    (35) exp -> exp . NOT_EQUAL exp
+    (36) exp -> exp . LOGICAL exp
+
+    SEMICOL         shift and go to state 87
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ASTERISK        shift and go to state 25
+    FWSLASH         shift and go to state 26
+    TOPI            shift and go to state 27
+    MOD             shift and go to state 28
+    LESSER          shift and go to state 29
+    GREATER         shift and go to state 30
+    LESSER_EQUAL    shift and go to state 31
+    GREATER_EQUAL   shift and go to state 32
+    IS_EQUAL        shift and go to state 33
+    NOT_EQUAL       shift and go to state 34
+    LOGICAL         shift and go to state 35
+
+
+state 82
+
+    (20) stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .
+
+    SEMICOL         reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    L_ROUND         reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    L_CURLY         reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    L_SQR           reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    PRINT           reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    FOR             reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    DATA_TYPE       reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    VAR_NAME        reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    MINUS           reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    NOT             reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    INT             reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    FLOAT           reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    STRING          reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    CHAR            reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    BOOL            reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    IF              reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    $end            reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    R_CURLY         reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+    R_ROUND         reduce using rule 20 (stmt -> VAR_NAME ASSIGNMENT exp SEMICOL .)
+
+
+state 83
+
+    (13) if -> IF L_ROUND exp R_ROUND . stmt_blk else
+    (8) stmt_blk -> . L_CURLY S R_CURLY
+
+    L_CURLY         shift and go to state 89
+
+    stmt_blk                       shift and go to state 88
+
+state 84
+
+    (9) stmt -> PRINT L_ROUND args R_ROUND SEMICOL .
+
+    SEMICOL         reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    L_ROUND         reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    L_CURLY         reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    L_SQR           reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    PRINT           reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    FOR             reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    DATA_TYPE       reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    VAR_NAME        reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    MINUS           reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    NOT             reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    INT             reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    FLOAT           reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    STRING          reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    CHAR            reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    BOOL            reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    IF              reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    $end            reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    R_CURLY         reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+    R_ROUND         reduce using rule 9 (stmt -> PRINT L_ROUND args R_ROUND SEMICOL .)
+
+
+state 85
+
+    (11) args -> args COMMA args .
+    (11) args -> args . COMMA args
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    R_ROUND         reduce using rule 11 (args -> args COMMA args .)
+    COMMA           shift and go to state 79
+
+  ! COMMA           [ reduce using rule 11 (args -> args COMMA args .) ]
+
+
+state 86
+
+    (17) stmt -> FOR L_ROUND stmt exp SEMICOL . stmt R_ROUND stmt_blk
+    (3) stmt -> . exp SEMICOL
+    (4) stmt -> . SEMICOL
+    (5) stmt -> . L_ROUND R_ROUND
+    (6) stmt -> . L_CURLY R_CURLY
+    (7) stmt -> . L_SQR R_SQR
+    (9) stmt -> . PRINT L_ROUND args R_ROUND SEMICOL
+    (12) stmt -> . if
+    (17) stmt -> . FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk
+    (18) stmt -> . DATA_TYPE VAR_NAME SEMICOL
+    (19) stmt -> . DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL
+    (20) stmt -> . VAR_NAME ASSIGNMENT exp SEMICOL
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+    (13) if -> . IF L_ROUND exp R_ROUND stmt_blk else
+
+    SEMICOL         shift and go to state 4
+    L_ROUND         shift and go to state 5
+    L_CURLY         shift and go to state 6
+    L_SQR           shift and go to state 7
+    PRINT           shift and go to state 8
+    FOR             shift and go to state 10
+    DATA_TYPE       shift and go to state 11
+    VAR_NAME        shift and go to state 12
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+    IF              shift and go to state 20
+
+    stmt                           shift and go to state 90
+    exp                            shift and go to state 3
+    if                             shift and go to state 9
+
+state 87
+
+    (19) stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .
+
+    SEMICOL         reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    L_ROUND         reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    L_CURLY         reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    L_SQR           reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    PRINT           reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    FOR             reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    DATA_TYPE       reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    VAR_NAME        reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    MINUS           reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    NOT             reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    INT             reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    FLOAT           reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    STRING          reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    CHAR            reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    BOOL            reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    IF              reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    $end            reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    R_CURLY         reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+    R_ROUND         reduce using rule 19 (stmt -> DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL .)
+
+
+state 88
+
+    (13) if -> IF L_ROUND exp R_ROUND stmt_blk . else
+    (14) else -> . ELSE stmt_blk
+    (15) else -> . ELSE if
+    (16) else -> .
+
+    ELSE            shift and go to state 92
+    SEMICOL         reduce using rule 16 (else -> .)
+    L_ROUND         reduce using rule 16 (else -> .)
+    L_CURLY         reduce using rule 16 (else -> .)
+    L_SQR           reduce using rule 16 (else -> .)
+    PRINT           reduce using rule 16 (else -> .)
+    FOR             reduce using rule 16 (else -> .)
+    DATA_TYPE       reduce using rule 16 (else -> .)
+    VAR_NAME        reduce using rule 16 (else -> .)
+    MINUS           reduce using rule 16 (else -> .)
+    NOT             reduce using rule 16 (else -> .)
+    INT             reduce using rule 16 (else -> .)
+    FLOAT           reduce using rule 16 (else -> .)
+    STRING          reduce using rule 16 (else -> .)
+    CHAR            reduce using rule 16 (else -> .)
+    BOOL            reduce using rule 16 (else -> .)
+    IF              reduce using rule 16 (else -> .)
+    $end            reduce using rule 16 (else -> .)
+    R_CURLY         reduce using rule 16 (else -> .)
+    R_ROUND         reduce using rule 16 (else -> .)
+
+    else                           shift and go to state 91
+
+state 89
+
+    (8) stmt_blk -> L_CURLY . S R_CURLY
+    (1) S -> . stmt S
+    (2) S -> .
+    (3) stmt -> . exp SEMICOL
+    (4) stmt -> . SEMICOL
+    (5) stmt -> . L_ROUND R_ROUND
+    (6) stmt -> . L_CURLY R_CURLY
+    (7) stmt -> . L_SQR R_SQR
+    (9) stmt -> . PRINT L_ROUND args R_ROUND SEMICOL
+    (12) stmt -> . if
+    (17) stmt -> . FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk
+    (18) stmt -> . DATA_TYPE VAR_NAME SEMICOL
+    (19) stmt -> . DATA_TYPE VAR_NAME ASSIGNMENT exp SEMICOL
+    (20) stmt -> . VAR_NAME ASSIGNMENT exp SEMICOL
+    (21) exp -> . L_ROUND exp R_ROUND
+    (22) exp -> . L_CURLY exp R_CURLY
+    (23) exp -> . L_SQR exp R_SQR
+    (24) exp -> . exp PLUS exp
+    (25) exp -> . exp MINUS exp
+    (26) exp -> . exp ASTERISK exp
+    (27) exp -> . exp FWSLASH exp
+    (28) exp -> . exp TOPI exp
+    (29) exp -> . exp MOD exp
+    (30) exp -> . exp LESSER exp
+    (31) exp -> . exp GREATER exp
+    (32) exp -> . exp LESSER_EQUAL exp
+    (33) exp -> . exp GREATER_EQUAL exp
+    (34) exp -> . exp IS_EQUAL exp
+    (35) exp -> . exp NOT_EQUAL exp
+    (36) exp -> . exp LOGICAL exp
+    (37) exp -> . MINUS exp
+    (38) exp -> . NOT exp
+    (39) exp -> . VAR_NAME PLUS_PLUS
+    (40) exp -> . VAR_NAME MINUS_MINUS
+    (41) exp -> . VAR_NAME
+    (42) exp -> . INT
+    (43) exp -> . FLOAT
+    (44) exp -> . STRING
+    (45) exp -> . CHAR
+    (46) exp -> . BOOL
+    (13) if -> . IF L_ROUND exp R_ROUND stmt_blk else
+
+    R_CURLY         reduce using rule 2 (S -> .)
+    SEMICOL         shift and go to state 4
+    L_ROUND         shift and go to state 5
+    L_CURLY         shift and go to state 6
+    L_SQR           shift and go to state 7
+    PRINT           shift and go to state 8
+    FOR             shift and go to state 10
+    DATA_TYPE       shift and go to state 11
+    VAR_NAME        shift and go to state 12
+    MINUS           shift and go to state 13
+    NOT             shift and go to state 14
+    INT             shift and go to state 15
+    FLOAT           shift and go to state 16
+    STRING          shift and go to state 17
+    CHAR            shift and go to state 18
+    BOOL            shift and go to state 19
+    IF              shift and go to state 20
+
+    S                              shift and go to state 93
+    stmt                           shift and go to state 2
+    exp                            shift and go to state 3
+    if                             shift and go to state 9
+
+state 90
+
+    (17) stmt -> FOR L_ROUND stmt exp SEMICOL stmt . R_ROUND stmt_blk
+
+    R_ROUND         shift and go to state 94
+
+
+state 91
+
+    (13) if -> IF L_ROUND exp R_ROUND stmt_blk else .
+
+    SEMICOL         reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    L_ROUND         reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    L_CURLY         reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    L_SQR           reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    PRINT           reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    FOR             reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    DATA_TYPE       reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    VAR_NAME        reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    MINUS           reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    NOT             reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    INT             reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    FLOAT           reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    STRING          reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    CHAR            reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    BOOL            reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    IF              reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    $end            reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    R_CURLY         reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+    R_ROUND         reduce using rule 13 (if -> IF L_ROUND exp R_ROUND stmt_blk else .)
+
+
+state 92
+
+    (14) else -> ELSE . stmt_blk
+    (15) else -> ELSE . if
+    (8) stmt_blk -> . L_CURLY S R_CURLY
+    (13) if -> . IF L_ROUND exp R_ROUND stmt_blk else
+
+    L_CURLY         shift and go to state 89
+    IF              shift and go to state 20
+
+    stmt_blk                       shift and go to state 95
+    if                             shift and go to state 96
+
+state 93
+
+    (8) stmt_blk -> L_CURLY S . R_CURLY
+
+    R_CURLY         shift and go to state 97
+
+
+state 94
+
+    (17) stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND . stmt_blk
+    (8) stmt_blk -> . L_CURLY S R_CURLY
+
+    L_CURLY         shift and go to state 89
+
+    stmt_blk                       shift and go to state 98
+
+state 95
+
+    (14) else -> ELSE stmt_blk .
+
+    SEMICOL         reduce using rule 14 (else -> ELSE stmt_blk .)
+    L_ROUND         reduce using rule 14 (else -> ELSE stmt_blk .)
+    L_CURLY         reduce using rule 14 (else -> ELSE stmt_blk .)
+    L_SQR           reduce using rule 14 (else -> ELSE stmt_blk .)
+    PRINT           reduce using rule 14 (else -> ELSE stmt_blk .)
+    FOR             reduce using rule 14 (else -> ELSE stmt_blk .)
+    DATA_TYPE       reduce using rule 14 (else -> ELSE stmt_blk .)
+    VAR_NAME        reduce using rule 14 (else -> ELSE stmt_blk .)
+    MINUS           reduce using rule 14 (else -> ELSE stmt_blk .)
+    NOT             reduce using rule 14 (else -> ELSE stmt_blk .)
+    INT             reduce using rule 14 (else -> ELSE stmt_blk .)
+    FLOAT           reduce using rule 14 (else -> ELSE stmt_blk .)
+    STRING          reduce using rule 14 (else -> ELSE stmt_blk .)
+    CHAR            reduce using rule 14 (else -> ELSE stmt_blk .)
+    BOOL            reduce using rule 14 (else -> ELSE stmt_blk .)
+    IF              reduce using rule 14 (else -> ELSE stmt_blk .)
+    $end            reduce using rule 14 (else -> ELSE stmt_blk .)
+    R_CURLY         reduce using rule 14 (else -> ELSE stmt_blk .)
+    R_ROUND         reduce using rule 14 (else -> ELSE stmt_blk .)
+
+
+state 96
+
+    (15) else -> ELSE if .
+
+    SEMICOL         reduce using rule 15 (else -> ELSE if .)
+    L_ROUND         reduce using rule 15 (else -> ELSE if .)
+    L_CURLY         reduce using rule 15 (else -> ELSE if .)
+    L_SQR           reduce using rule 15 (else -> ELSE if .)
+    PRINT           reduce using rule 15 (else -> ELSE if .)
+    FOR             reduce using rule 15 (else -> ELSE if .)
+    DATA_TYPE       reduce using rule 15 (else -> ELSE if .)
+    VAR_NAME        reduce using rule 15 (else -> ELSE if .)
+    MINUS           reduce using rule 15 (else -> ELSE if .)
+    NOT             reduce using rule 15 (else -> ELSE if .)
+    INT             reduce using rule 15 (else -> ELSE if .)
+    FLOAT           reduce using rule 15 (else -> ELSE if .)
+    STRING          reduce using rule 15 (else -> ELSE if .)
+    CHAR            reduce using rule 15 (else -> ELSE if .)
+    BOOL            reduce using rule 15 (else -> ELSE if .)
+    IF              reduce using rule 15 (else -> ELSE if .)
+    $end            reduce using rule 15 (else -> ELSE if .)
+    R_CURLY         reduce using rule 15 (else -> ELSE if .)
+    R_ROUND         reduce using rule 15 (else -> ELSE if .)
+
+
+state 97
+
+    (8) stmt_blk -> L_CURLY S R_CURLY .
+
+    ELSE            reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    SEMICOL         reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    L_ROUND         reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    L_CURLY         reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    L_SQR           reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    PRINT           reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    FOR             reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    DATA_TYPE       reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    VAR_NAME        reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    MINUS           reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    NOT             reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    INT             reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    FLOAT           reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    STRING          reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    CHAR            reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    BOOL            reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    IF              reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    $end            reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    R_CURLY         reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+    R_ROUND         reduce using rule 8 (stmt_blk -> L_CURLY S R_CURLY .)
+
+
+state 98
+
+    (17) stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .
+
+    SEMICOL         reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    L_ROUND         reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    L_CURLY         reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    L_SQR           reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    PRINT           reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    FOR             reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    DATA_TYPE       reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    VAR_NAME        reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    MINUS           reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    NOT             reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    INT             reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    FLOAT           reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    STRING          reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    CHAR            reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    BOOL            reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    IF              reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    $end            reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    R_CURLY         reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+    R_ROUND         reduce using rule 17 (stmt -> FOR L_ROUND stmt exp SEMICOL stmt R_ROUND stmt_blk .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for ASTERISK in state 53 resolved as shift
+WARNING: shift/reduce conflict for FWSLASH in state 53 resolved as shift
+WARNING: shift/reduce conflict for TOPI in state 53 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 53 resolved as shift
+WARNING: shift/reduce conflict for LESSER in state 53 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 53 resolved as shift
+WARNING: shift/reduce conflict for LESSER_EQUAL in state 53 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUAL in state 53 resolved as shift
+WARNING: shift/reduce conflict for IS_EQUAL in state 53 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 53 resolved as shift
+WARNING: shift/reduce conflict for LOGICAL in state 53 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 67 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 67 resolved as shift
+WARNING: shift/reduce conflict for ASTERISK in state 67 resolved as shift
+WARNING: shift/reduce conflict for FWSLASH in state 67 resolved as shift
+WARNING: shift/reduce conflict for TOPI in state 67 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 67 resolved as shift
+WARNING: shift/reduce conflict for LESSER in state 67 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 67 resolved as shift
+WARNING: shift/reduce conflict for LESSER_EQUAL in state 67 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUAL in state 67 resolved as shift
+WARNING: shift/reduce conflict for IS_EQUAL in state 67 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 67 resolved as shift
+WARNING: shift/reduce conflict for LOGICAL in state 67 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 85 resolved as shift

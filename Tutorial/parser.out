@@ -1,0 +1,203 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    ASSIGNMENT
+    ASTERISK
+    BOOL
+    CHAR
+    FLOAT
+    FOR
+    FWSLASH
+    GREATER
+    GREATER_EQUAL
+    IS_EQUAL
+    LESSER
+    LESSER_EQUAL
+    MINUS_MINUS
+    MOD
+    NOT
+    NOT_EQUAL
+    OR
+    PLUS_PLUS
+    STRING
+    TOPI
+    VAR_NAME
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> stmt S
+Rule 2     S -> <empty>
+Rule 3     stmt -> PRINT exp SEMICOL
+Rule 4     exp -> exp PLUS exp
+Rule 5     exp -> exp MINUS exp
+Rule 6     exp -> INT
+
+Terminals, with rules where they appear
+
+AND                  : 
+ASSIGNMENT           : 
+ASTERISK             : 
+BOOL                 : 
+CHAR                 : 
+FLOAT                : 
+FOR                  : 
+FWSLASH              : 
+GREATER              : 
+GREATER_EQUAL        : 
+INT                  : 6
+IS_EQUAL             : 
+LESSER               : 
+LESSER_EQUAL         : 
+MINUS                : 5
+MINUS_MINUS          : 
+MOD                  : 
+NOT                  : 
+NOT_EQUAL            : 
+OR                   : 
+PLUS                 : 4
+PLUS_PLUS            : 
+PRINT                : 3
+SEMICOL              : 3
+STRING               : 
+TOPI                 : 
+VAR_NAME             : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+S                    : 1 0
+exp                  : 3 4 4 5 5
+stmt                 : 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . stmt S
+    (2) S -> .
+    (3) stmt -> . PRINT exp SEMICOL
+
+    $end            reduce using rule 2 (S -> .)
+    PRINT           shift and go to state 3
+
+    S                              shift and go to state 1
+    stmt                           shift and go to state 2
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> stmt . S
+    (1) S -> . stmt S
+    (2) S -> .
+    (3) stmt -> . PRINT exp SEMICOL
+
+    $end            reduce using rule 2 (S -> .)
+    PRINT           shift and go to state 3
+
+    stmt                           shift and go to state 2
+    S                              shift and go to state 4
+
+state 3
+
+    (3) stmt -> PRINT . exp SEMICOL
+    (4) exp -> . exp PLUS exp
+    (5) exp -> . exp MINUS exp
+    (6) exp -> . INT
+
+    INT             shift and go to state 6
+
+    exp                            shift and go to state 5
+
+state 4
+
+    (1) S -> stmt S .
+
+    $end            reduce using rule 1 (S -> stmt S .)
+
+
+state 5
+
+    (3) stmt -> PRINT exp . SEMICOL
+    (4) exp -> exp . PLUS exp
+    (5) exp -> exp . MINUS exp
+
+    SEMICOL         shift and go to state 7
+    PLUS            shift and go to state 8
+    MINUS           shift and go to state 9
+
+
+state 6
+
+    (6) exp -> INT .
+
+    SEMICOL         reduce using rule 6 (exp -> INT .)
+    PLUS            reduce using rule 6 (exp -> INT .)
+    MINUS           reduce using rule 6 (exp -> INT .)
+
+
+state 7
+
+    (3) stmt -> PRINT exp SEMICOL .
+
+    PRINT           reduce using rule 3 (stmt -> PRINT exp SEMICOL .)
+    $end            reduce using rule 3 (stmt -> PRINT exp SEMICOL .)
+
+
+state 8
+
+    (4) exp -> exp PLUS . exp
+    (4) exp -> . exp PLUS exp
+    (5) exp -> . exp MINUS exp
+    (6) exp -> . INT
+
+    INT             shift and go to state 6
+
+    exp                            shift and go to state 10
+
+state 9
+
+    (5) exp -> exp MINUS . exp
+    (4) exp -> . exp PLUS exp
+    (5) exp -> . exp MINUS exp
+    (6) exp -> . INT
+
+    INT             shift and go to state 6
+
+    exp                            shift and go to state 11
+
+state 10
+
+    (4) exp -> exp PLUS exp .
+    (4) exp -> exp . PLUS exp
+    (5) exp -> exp . MINUS exp
+
+    SEMICOL         reduce using rule 4 (exp -> exp PLUS exp .)
+    PLUS            reduce using rule 4 (exp -> exp PLUS exp .)
+    MINUS           reduce using rule 4 (exp -> exp PLUS exp .)
+
+  ! PLUS            [ shift and go to state 8 ]
+  ! MINUS           [ shift and go to state 9 ]
+
+
+state 11
+
+    (5) exp -> exp MINUS exp .
+    (4) exp -> exp . PLUS exp
+    (5) exp -> exp . MINUS exp
+
+    SEMICOL         reduce using rule 5 (exp -> exp MINUS exp .)
+    PLUS            reduce using rule 5 (exp -> exp MINUS exp .)
+    MINUS           reduce using rule 5 (exp -> exp MINUS exp .)
+
+  ! PLUS            [ shift and go to state 8 ]
+  ! MINUS           [ shift and go to state 9 ]
+
