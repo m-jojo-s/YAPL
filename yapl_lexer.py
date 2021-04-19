@@ -90,7 +90,7 @@ def t_INT(t): # parameter t is the token
 
 
 def t_STRING(t):
-    r'"[^"]+"'
+    r'"[^"]*"'
     t.value = str(t.value[1:-1])
     return t
 

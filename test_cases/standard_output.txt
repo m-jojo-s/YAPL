@@ -1,0 +1,2 @@
+print("Standard Output");
+print(5.4f, sach, 2);

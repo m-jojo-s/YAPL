@@ -172,7 +172,7 @@ def exp_eval(p): # evaluate expression
         flat = []
         for item in p[1:]:
             res = exp_eval(item)
-            flat += flatten(res)
+            flat += res
         return flat
     elif operator == "ASSIGN":
         var_name = p[1]
@@ -205,9 +205,9 @@ def stmt_eval(p): # p is the parsed statement subtree / program
             print(result[1])
             return
         to_print = ""
-        for item in result[:-1]:
-            to_print += str(item[1]) + " "
-        to_print += str(result[-1][1])
+        for item in result[1:-1:2]:
+            to_print += str(item) + " "
+        to_print += str(result[-1])
         print(to_print)
                 
     elif stype == "DECLARE":

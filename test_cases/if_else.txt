@@ -1,0 +1,37 @@
+bool isRaining = jhoot;
+bool isSnowing = sach;
+int temperature = 0;
+agar(isRaining == sach)
+{
+    agar(temperature > 45)
+    {
+        print("Wear lightweight raincoat");
+    }
+    warna agar(temperature == 45)
+    {
+        print("wear lightweight raincoat");
+    }
+    warna
+    {
+        print("wear fleece and raincoat");
+    }
+}
+warna agar(isSnowing != jhoot)
+{
+    agar(temperature > 20)
+    {
+        print("wear soft shell jacket");
+    }
+    warna agar(temperature >= 0)
+    {
+        print("wear down jacket");
+    }
+    warna
+    {
+        print("wear base layers and down jacket");
+    }
+}
+warna
+{
+    print("it is hard to come up with interesting examples");
+}
