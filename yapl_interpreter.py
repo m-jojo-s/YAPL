@@ -30,7 +30,7 @@ def var_create(var_name, var_type) -> bool:
     var_stacc = FUNC_STACC[-1]
     curr_scope = var_exists(var_name)
     if curr_scope >= len(var_stacc) - 1:
-        raise ValueError("ValueError: " + var_name + " already exists")
+        raise ValueError("ValueError: " + " Redeclaration of " + var_name)
         return False
     new_var = [var_type, None]
     var_dict = var_stacc[-1]
@@ -191,7 +191,7 @@ def exp_eval(p): # evaluate expression
         instance = var[1]
         result = instance.get(str(prpty))
         if result == None:
-            raise LookupError("LookupError: Could not access property " + prpty + " of struct type " + str(var[0]))
+            raise AttributeError("AttributeError: Could not access property \"" + prpty + "\" of struct type " + str(var[0]))
         return result
     elif operator == "FUNC_CALL":
         func_name = p[1]
@@ -286,6 +286,9 @@ def stmt_eval(p): # p is the parsed statement subtree / program
         # evaluate statements
         for stmt in p[1]:
             stmt_eval(stmt)
+            # check if current function returned anything then exit
+            if "wapas" in FUNC_STACC[-1][0] and FUNC_STACC[-1][0]["wapas"] != None:
+                break
         # remove added scope
         var_stacc.pop()
     elif stype == "FOR":

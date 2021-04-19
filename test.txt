@@ -1,11 +1,4 @@
-mulazim fib(int n)
+for (bool l = jhoot; l != sach; l=sach)
 {
-    agar((n == 1) ya (n == 0))
-    {
-        print("returning n");
-        wapas n;
-    }
-    print("this shouldn't print");
+    print(l);
 }
-
-print(fib(1));

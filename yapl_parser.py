@@ -172,7 +172,7 @@ def p_return_stmt(p):
     stmt : RETURN exp SEMICOL
         | RETURN SEMICOL
     """
-    if len(p) <= 2:
+    if len(p) <= 3:
         p[0] = ("RETURN", "EMPTY")
     else:
         p[0] = ("RETURN", p[2])

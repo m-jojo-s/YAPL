@@ -28,3 +28,4 @@ print(Book2.title);
 print(Book2.author);
 print(Book2.subject);
 print(Book2.book_id);
+print(Book2.publisher);
