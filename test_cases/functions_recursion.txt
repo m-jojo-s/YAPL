@@ -1,0 +1,10 @@
+mulazim fib(int n)
+{
+    agar((n == 1) ya (n == 0))
+    {
+        wapas n;
+    }
+    wapas fib(n-1) + fib(n-2);
+}
+
+print(fib(9));

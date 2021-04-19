@@ -60,10 +60,13 @@ def p_print_stmt(p):
 
 def p_args_exp(p):
     """
-    args : exp
-        | args COMMA args
+    args : args COMMA args
+        | exp
+        |
     """
-    p[0] = (p[1])
+    p[0] = ("EMPTY")
+    if len(p) > 1:
+        p[0] = (p[1])
     if len(p) > 2:
         p[0] = (",", p[1], p[3])
 
@@ -138,6 +141,42 @@ def p_dec(p):
         p[0] = ("DECLARE", p[1], p[2])
     elif(len(p) == 6):
         p[0] = ("DEC_ASS", ("DECLARE", p[1], p[2]), ("ASSIGN", p[2], p[4]) )
+
+def p_func_dec(p):
+    """
+    stmt : FUNC_DEC VAR_NAME param_blk stmt_blk
+    """
+    p[0] = ("FUNC_DEC", p[2], p[3], p[4])
+
+def p_param_blk(p):
+    """
+    param_blk : L_ROUND param COMMA param R_ROUND
+        |       L_ROUND param R_ROUND
+        |       L_ROUND  R_ROUND
+    """
+    if len(p) > 4:
+        p[0] = (",", p[2], p[4])
+    elif len(p) > 3:
+        p[0] = (",", p[2])
+    else:
+        p[0] = (",", ("string", "EMPTY"))
+
+def p_param(p):
+    """
+    param : DATA_TYPE VAR_NAME
+    """
+    p[0] = (p[1], p[2])
+
+def p_return_stmt(p):
+    """
+    stmt : RETURN exp SEMICOL
+        | RETURN SEMICOL
+    """
+    if len(p) <= 2:
+        p[0] = ("RETURN", "EMPTY")
+    else:
+        p[0] = ("RETURN", p[2])
+    
     
 def p_assign_stmt(p):
     """
@@ -172,6 +211,12 @@ def p_exp_bin(p):
         | exp DOT VAR_NAME
     """
     p[0] = (p[2], p[1], p[3])
+
+def p_exp_call(p):
+    """
+    exp : VAR_NAME L_ROUND args R_ROUND
+    """
+    p[0] = ("FUNC_CALL", p[1], p[3])
 
 def p_exp_neg(p):
     """

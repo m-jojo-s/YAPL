@@ -41,6 +41,8 @@ tokens = [
     "IF",
     "ELSE",
     "STRUCT",
+    "FUNC_DEC",
+    "RETURN",
     # BRACKETS
     "L_ROUND",
     "R_ROUND",
@@ -128,6 +130,10 @@ def t_NAME(t):
         t.type = "ELSE"
     elif t.value == "struct":
         t.type = "STRUCT"
+    elif t.value == "mulazim":
+        t.type = "FUNC_DEC"
+    elif t.value == "wapas":
+        t.type = "RETURN"
     else:
         t.type = 'VAR_NAME'
         

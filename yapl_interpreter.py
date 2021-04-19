@@ -119,7 +119,7 @@ def exp_eval(p): # evaluate expression
         "char": "STR",
         "NUM": "NUM",
         "BOOL": "NUM",
-        "STR": "STR",
+        "STR": "STR"
     }
     res1 = 0
     res2 = 0
@@ -193,6 +193,52 @@ def exp_eval(p): # evaluate expression
         if result == None:
             raise LookupError("LookupError: Could not access property " + prpty + " of struct type " + str(var[0]))
         return result
+    elif operator == "FUNC_CALL":
+        func_name = p[1]
+        args = exp_eval(p[2])
+        if args == "EMPTY":
+            args = []
+        # input()
+        # check if function exists
+        if var_exists(func_name) <= -2:
+            raise NameError("NameError: " + func_name + " does not exist")
+            return
+        # create new function scope with parameters
+        FUNC_STACC.append([{"wapas": None}])
+        func_def = FUNC_STACC[0][0][func_name]
+        dec_stmts = []
+        params = func_def["parameters"]
+        for i in range(0, len(params)-1):
+            dec_stmts.append(("DECLARE", params[i], params[i+1]))
+        for stmt in dec_stmts:
+            stmt_eval(stmt)
+        param_names = params[1::2]
+        arg_vals = [(args[i], args[i+1]) for i in range(0, len(args)-1, 2)]
+        if len(param_names) != len(arg_vals):
+            raise RuntimeError("RuntimeError: Function " + func_name + " takes " + str(len(param_names)) + " arguments but " + str(len(arg_vals)) + " given.")
+            return None
+        assign_stmts = []
+        # Assign argument values to parameters
+        for i in range(0, len(param_names)):
+            assign_stmts.append(("ASSIGN", param_names[i], arg_vals[i]))
+        for stmt in assign_stmts:
+            stmt_eval(stmt)
+        # Run function block
+        stmt_blk = func_def["block"][1]
+        for stmt in stmt_blk:
+            stmt_eval(stmt)
+            # check if function returned anything then exit
+            if FUNC_STACC[-1][0]["wapas"] != None:
+                break
+        # save return val and remove scope
+        result = FUNC_STACC[-1][0]["wapas"]
+        if result == None:
+            ret_stmt = ("RETURN", "EMPTY")
+            stmt_eval(ret_stmt)
+        FUNC_STACC.pop()
+        return result
+        
+        
     else: # operator was a single value
         return p
 
@@ -201,6 +247,9 @@ def stmt_eval(p): # p is the parsed statement subtree / program
     if stype == 'PRINT':
         args = p[1]
         result = exp_eval(args)
+        if result == "EMPTY":
+            print("")
+            return
         if type(result) != type(["temp_list"]) or len(result) == 2:
             print(result[1])
             return
@@ -228,7 +277,7 @@ def stmt_eval(p): # p is the parsed statement subtree / program
         cond = bool(exp_eval(p[1])[1])
         if cond == True:
             stmt_eval(p[2])
-        else:
+        elif p[3] != None:
             stmt_eval(p[3])
     elif stype == "STMT_BLK":
         # add new scope dict in curr function's stack
@@ -257,6 +306,10 @@ def stmt_eval(p): # p is the parsed statement subtree / program
     elif stype == "STRUCT":
         var_name = p[1]
         dec_chain = p[2]
+        # check if name already exists
+        if var_exists(var_name) >= -1:
+            raise NameError("NameError: " + var_name + " already exists")
+            return
         # temporarily add a new dict in scope so all dec-stmts go there
         var_stacc = FUNC_STACC[-1]
         var_stacc.append({})
@@ -276,11 +329,36 @@ def stmt_eval(p): # p is the parsed statement subtree / program
         var_stacc = FUNC_STACC[-1]
         curr_scope = var_exists(instance_name)
         if curr_scope >= len(var_stacc) - 1:
-            raise ValueError("ValueError: " + instance_name + " already exists")
+            raise NameError("NameError: " + instance_name + " already exists")
             return
         new_var = [struct_name, deepcopy(struct_type[1])]
         var_dict = var_stacc[-1]
         var_dict[instance_name] = new_var
+    elif stype == "FUNC_DEC":
+        func_name = p[1]
+        parameters = p[2]
+        stmt_blk = p[3]
+        # check if name already exists
+        if var_exists(func_name) >= -1:
+            raise NameError("NameError: " + func_name + " already exists")
+            return
+        # evaluate params
+        parameters = exp_eval(parameters)
+        if parameters[-1] == "EMPTY":
+            parameters = []
+        elif len(parameters) == 2:
+            paramters = [parameters]
+        func_dict = {"parameters": parameters, "block": stmt_blk}
+        # add to global scope
+        FUNC_STACC[0][0][func_name] = func_dict
+    elif stype == "RETURN":
+        # check if no function is running
+        if len(FUNC_STACC) <= 1:
+            exit()
+        # save value in scope
+        FUNC_STACC[-1][0]["wapas"] = exp_eval(p[1])
+            
+        
         
 def run_program(p): # p[0] == 'Program': a bunch of statements
     for stmt in p: # statements in proglist
