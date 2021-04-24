@@ -1,0 +1,42 @@
+bool isRaining = jhoot;
+bool isSnowing = sach;
+int temperature = 30;
+agar(isRaining == sach){
+ temperature = 0;
+}
+warna {
+ agar(isSnowing == jhoot){
+ print("stay at home");
+ }
+ warna{
+ agar(temperature == 0){
+ print("stay at home");
+ }
+ warna{
+ print("Wear snow jacket");
+ }
+ }
+}
+print(isRaining, isSnowing, temperature);
+isRaining = sach;
+isSnowing = jhoot;
+temperature = 30;
+agar(isRaining != jhoot){
+ agar(temperature != 45){
+ agar(isSnowing == jhoot){
+ print("Wear raincoat");
+ temperature = 45;
+ agar(temperature >= 45){
+ isRaining = jhoot;
+ }
+ print(isRaining, isSnowing, temperature);
+ temperature = -10;
+ }
+ agar (temperature == 45){
+ print("Hide in the bunker");
+ }
+ }
+ isSnowing = sach;
+ isRaining = jhoot;
+}
+print(isRaining, isSnowing, temperature);

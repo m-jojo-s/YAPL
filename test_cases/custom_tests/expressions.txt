@@ -1,0 +1,17 @@
+string mystring = ("theory" + " of ") + "automata " + ((("3") 
++ "1") + "5");
+print(mystring);
+int a = 2 * 20 - 20 / 2 * -5;
+a++;
+print(a);
+float b = a + (2^3) + 10 / (6 - 1) - 1;
+print(a, b);
+a--;
+b = b^0.5;
+print(a, b);
+int e = 0;
+bool c = a < b;
+bool d = a >= 90;
+print(c, d);
+print(nahi c aur (jhoot ya d));
+print(b / e);

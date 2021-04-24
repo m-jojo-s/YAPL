@@ -1,0 +1,51 @@
+mulazim paramCheck(char a, int b, bool c, string d, float e)
+{
+ print(a, b, c, d, e);
+}
+mulazim fibSeries(int n)
+{
+ int t1 = 0;
+ int t2 = 1;
+ int nextTerm = t1 + t2;
+ 
+ agar (n < 0) {
+ print("n must be >= 0");
+ wapas -1;
+ } 
+ print(t1, ",");
+ print(t2, ",");
+ 
+ for(int i = 1; i <= n; i++;) {
+ agar (i != n) {
+ print(nextTerm,",");
+ }
+ warna {
+ print(nextTerm);
+ }
+ t1 = t2;
+ t2 = nextTerm;
+ nextTerm = t1 + t2;
+ }
+ 
+ print("Final fib term:");
+ wapas nextTerm;
+}
+mulazim factorial(int n)
+{
+ agar (n == 0 ya n == 1) {
+ wapas 1;
+ }
+ warna {
+ int result = n * factorial(n - 1);
+ wapas result;
+ }
+}
+paramCheck('x', 668*2+1, sach aur sach, "le" + "et", 
+255 + 0.255);
+print(fibSeries(-5));
+print(fibSeries(7));
+print("Factorial of 5:");
+int f5 = 0;
+f5 = factorial(5);
+print(f5);
+paramCheck('m', "sorry for this", sach, 1, 0.1);

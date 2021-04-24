@@ -150,22 +150,22 @@ def p_func_dec(p):
 
 def p_param_blk(p):
     """
-    param_blk : L_ROUND param COMMA param R_ROUND
-        |       L_ROUND param R_ROUND
-        |       L_ROUND  R_ROUND
+    param_blk : L_ROUND param R_ROUND
     """
-    if len(p) > 4:
-        p[0] = (",", p[2], p[4])
-    elif len(p) > 3:
-        p[0] = (",", p[2])
-    else:
-        p[0] = (",", ("string", "EMPTY"))
+    p[0] = p[2]
 
 def p_param(p):
     """
-    param : DATA_TYPE VAR_NAME
+    param : param COMMA param 
+        | DATA_TYPE VAR_NAME
+        |
     """
-    p[0] = (p[1], p[2])
+    if len(p) > 3:
+        p[0] = (",", p[1], p[3])
+    elif len(p) > 2:
+        p[0] = (",", (p[1], p[2]))
+    else:
+        p[0] = (",", ("string", "EMPTY"))
 
 def p_return_stmt(p):
     """

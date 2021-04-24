@@ -1,0 +1,36 @@
+struct Person {
+ string name;
+ int age;
+ float salary;
+ bool isStudent;
+ char gender;
+};
+Person af;
+Person empty;
+ 
+string name = "Murphy";
+af.name = name;
+af.age = 60;
+float bonus = 0.5;
+af.salary = 15000 + bonus;
+af.isStudent = sach;
+af.gender = 'M';
+ 
+print("Displaying Murphy's Information.");
+print("Name:", af.name);
+print("Age: ", af.age);
+print("Salary: ", af.salary);
+print("Gender: ", af.gender);
+ 
+string isStudentStr = "No";
+agar (af.isStudent == sach) {
+ isStudentStr = "Yes";
+}
+print("Is", af.name, "a student?", isStudentStr);
+print("");
+print("Displaying Empty Person Struct Information.");
+print("Name:", empty.name);
+print("Age: ", empty.age);
+print("Salary: ", empty.salary);
+print("Gender: ", empty.gender);
+print("isStudent: ", empty.isStudent);
